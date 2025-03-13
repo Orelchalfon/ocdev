@@ -1,0 +1,217 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #646cff;
+  --primary-dark: #535bf2;
+  --background-dark: #13151a;
+  --background-light: #ffffff;
+  --text-light: rgba(255, 255, 255, 0.87);
+  --text-dark: #1a1a1a;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: colors 300ms; 
+}
+
+/* Theme Styles */
+.dark {
+  color: var(--text-light);
+  background-color: var(--background-dark);
+}
+
+:root:not(.dark) {
+  color: var(--text-dark);
+  background-color: var(--background-light);
+}
+
+@layer components {
+  .nav-link {
+    @apply relative text-lg font-medium transition-colors duration-300 origin-left  ;
+  }
+
+  .dark .nav-link {
+    @apply  text-gray-300 hover:text-white ;
+  }
+
+  :root:not(.dark) .nav-link {
+    @apply text-gray-700 hover:text-gray-900;
+    
+  }
+
+  /* .nav-link::after {
+    @apply content-[''] bg-purple-500 h-[2px] w-[100%]
+origin-left
+    scale-x-0 left-0 -bottom-[5px]  rounded-xl absolute duration-300 hover:scale-100 hover:origin-right;
+  } */
+
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500;
+  }
+
+  .glass-card {
+    @apply backdrop-blur-lg rounded-2xl shadow-xl transition-all duration-300;
+  }
+
+  .dark .glass-card {
+    @apply bg-gray-800/30 border border-white/10;
+  }
+
+  :root:not(.dark) .glass-card {
+    @apply bg-white/70 border border-gray-200;
+  }
+
+  .button-primary {
+    @apply bg-purple-600 text-white px-8 py-3 rounded-full transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .button-primary:not(:disabled) {
+    @apply hover:bg-purple-700 active:bg-purple-800;
+  }
+
+  .glass {
+    @apply backdrop-blur-md transition-colors duration-300;
+  }
+
+  .dark .glass {
+    @apply bg-gray-900/70;
+  }
+
+  :root:not(.dark) .glass {
+    @apply bg-white/70;
+  }
+}
+
+/* Custom Animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.floating {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Gradient Animations */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 15s ease infinite;
+}
+
+/* Scroll Progress Bar */
+.scroll-progress {
+  @apply fixed top-0 left-0 h-1 z-10 bg-purple-600 transition-all duration-300;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-purple-500 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-purple-600;
+}
+
+/* Text Selection */
+::selection {
+  @apply bg-purple-500/30 text-current;
+}
+
+/* Focus Outline */
+:focus {
+  @apply outline-none ring-2 ring-purple-500 ring-offset-2 ring-offset-transparent;
+}
+
+/* Form Elements */
+input, textarea {
+  @apply transition-all duration-300;
+}
+
+.dark input, .dark textarea {
+  @apply text-white placeholder-gray-400;
+}
+
+:root:not(.dark) input, :root:not(.dark) textarea {
+  @apply text-gray-900 placeholder-gray-500;
+}
+
+/* Loading Animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  @apply animate-spin;
+}
+
+/* Theme Transition */
+.theme-transition {
+  @apply transition-colors duration-300;
+}
+
+/* Mobile Menu */
+.mobile-menu-enter {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.mobile-menu-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.mobile-menu-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobile-menu-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 300ms, transform 300ms;
+}
