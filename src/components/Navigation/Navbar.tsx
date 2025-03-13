@@ -1,4 +1,4 @@
-import { motion, useMotionValueEvent, useScroll, useTransform, Variants } from 'framer-motion';
+import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { MenuButton, MobileMenu } from './MobileMenu';
 import { ThemeToggle } from './ThemeToggle';
@@ -7,7 +7,7 @@ interface NavbarProps {
     isDarkMode: boolean;
     toggleTheme: () => void;
     isMenuOpen: boolean;
-    setIsMenuOpen: Function;
+    setIsMenuOpen: (isOpen: boolean) => void;
     onNavigate: (sectionId: string) => void;
 }
 
@@ -87,7 +87,7 @@ export const Navbar = ({
                             <ThemeToggle isDark={isDarkMode} onToggle={toggleTheme} />
                             <MenuButton
                                 isOpen={isMenuOpen}
-                                onClick={() => setIsMenuOpen((prev: boolean) => !prev)}
+                                onClick={() => setIsMenuOpen(!isMenuOpen)}
                                 className="md:hidden"
                             />
                         </div>
@@ -97,7 +97,7 @@ export const Navbar = ({
 
             <MobileMenu
                 isOpen={isMenuOpen}
-                closeMenu={() => setIsMenuOpen((prev: boolean) => !prev)}
+                closeMenu={() => setIsMenuOpen(!isMenuOpen)}
                 onNavigate={onNavigate}
             />
         </>
