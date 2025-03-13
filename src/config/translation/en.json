@@ -1,0 +1,220 @@
+{
+  "meta": {
+    "title": "Orel Chalfon | Full Stack Developer",
+    "description": "Professional portfolio of Orel Chalfon, a Full Stack Developer specializing in MERN, C#/.NET, and SQL Server. Showcasing scalable applications, optimized UI/UX, and robust architectures.",
+    "keywords": "Full Stack, MERN, C#, .NET, SQL Server, Developer, Portfolio, UI/UX, Framer Motion",
+    "socialLinks": {
+      "linkedin": "https://www.linkedin.com/in/orelchalfon",
+      "github": "https://github.com/orelchalfon",
+      "twitter": "https://twitter.com/orelchalfon"
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "hero": {
+    "name": "Orel Chalfon",
+    "title": "Full Stack Developer | MERN & C#/.NET Expert",
+    "description": "Passionate Full Stack Developer specializing in the MERN stack with additional expertise in C#/.NET and SQL Server. Building scalable applications with optimized UI/UX and robust architectures.",
+    "cta": {
+      "viewProjects": "View Projects",
+      "hireUs": "Contact Me"
+    },
+    "tech": {
+      "react": "React.js",
+      "nodejs": "Node.js",
+      "typescript": "TypeScript",
+      "mongodb": "MongoDB",
+      "express": "Express.js",
+      "reactNative": "React Native",
+      "aspnet": "ASP.NET",
+      "mssql": "SQL Server"
+    }
+  },
+  "services": {
+    "title": "Services I Offer",
+    "additionalTitle": "Additional Services",
+    "mainServices": [
+      {
+        "icon": "💻",
+        "title": "Full Stack Development",
+        "description": "Develop scalable applications using MERN, C#/.NET, and SQL Server."
+      },
+      {
+        "icon": "🎨",
+        "title": "UI/UX Optimization",
+        "description": "Craft responsive and engaging user interfaces with smooth animations using Framer Motion."
+      },
+      {
+        "icon": "🎯",
+        "title": "Backend Engineering",
+        "description": "Design robust backend systems and APIs with Node.js, Express.js, C#, and ASP.NET."
+      },
+      {
+        "icon": "🎬",
+        "title": "Motion & Interaction",
+        "description": "Enhance user interactions with advanced animations and transitions."
+      },
+      {
+        "icon": "📸",
+        "title": "API Integration",
+        "description": "Integrate and optimize RESTful APIs for secure and efficient data exchange."
+      },
+      {
+        "icon": "🎥",
+        "title": "Performance Optimization",
+        "description": "Optimize code, implement caching, and design scalable architectures for peak performance."
+      }
+    ],
+    "consulting": {
+      "title": "Technical Consulting",
+      "description": "Providing expert guidance on scalable architectures, secure implementations, and technology strategy.",
+      "feature1": "Architecture Design",
+      "feature2": "Technology Strategy",
+      "feature3": "Performance Optimization"
+    },
+    "maintenance": {
+      "title": "Maintenance",
+      "description": "Continuous support and updates to keep your applications secure, performant, and scalable.",
+      "feature1": "24/7 Support",
+      "feature2": "Regular Updates",
+      "feature3": "Performance Monitoring"
+    }
+  },
+  "portfolio": {
+    "title": "My Portfolio",
+    "filter": {
+      "all": "All",
+      "web": "Web",
+      "mobile": "Mobile",
+      "design": "Design"
+    },
+    "featured": {
+      "title": "Featured Projects",
+      "project1": {
+        "title": "PlaceShare",
+        "description": "A full-stack MERN application with role-based authentication, secure file uploads, and interactive animations using Framer Motion."
+      },
+      "project2": {
+        "title": "Food Order App",
+        "description": "A responsive, modular application featuring efficient state management and dynamic API integration."
+      }
+    },
+    "viewProject": "View Project"
+  },
+  "about": {
+    "title": "About Orel Chalfon",
+    "description": "I am a passionate Full Stack Developer specializing in the MERN stack, C#/.NET, and SQL Server. I build scalable applications with optimized UI/UX and robust architectures.",
+    "stats": {
+      "years": "Years of Experience",
+      "clients": "Satisfied Clients",
+      "projects": "Projects Delivered",
+      "awards": "Certifications & Awards"
+    },
+    "mission": {
+      "title": "My Mission",
+      "description": "To leverage innovative technology and design to create impactful digital experiences that drive business growth."
+    },
+    "vision": {
+      "title": "My Vision",
+      "description": "To continuously evolve as a developer and set new standards in full stack development and digital innovation."
+    },
+    "team": {
+      "title": "Professional Network",
+      "member1": {
+        "name": "Dr. Eli Cohen",
+        "role": "Technical Advisor"
+      },
+      "member2": {
+        "name": "Sara Levi",
+        "role": "UX Consultant"
+      },
+      "member3": {
+        "name": "David Bar",
+        "role": "Software Architect"
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact Orel",
+    "phoneTitle": "Phone",
+    "emailTitle": "Email",
+    "addressTitle": "Address",
+    "form": {
+      "name": "Your Name",
+      "email": "Your Email",
+      "message": "Your Message",
+      "submit": "Send Message"
+    }
+  },
+  "testimonials": {
+    "title": "Testimonials",
+    "items": [
+      {
+        "name": "Client A",
+        "position": "CEO, Company A",
+        "testimonial": "Orel is an outstanding developer who delivers high-quality work on time."
+      },
+      {
+        "name": "Client B",
+        "position": "CTO, Company B",
+        "testimonial": "His technical expertise and problem-solving skills are top-notch."
+      }
+    ]
+  },
+  "blog": {
+    "title": "Latest Articles",
+    "items": [
+      {
+        "title": "Optimizing MERN Applications for Performance",
+        "date": "2024-04-15",
+        "excerpt": "Discover best practices for optimizing your MERN stack applications for speed and scalability."
+      },
+      {
+        "title": "Enhancing UI/UX with Framer Motion",
+        "date": "2024-03-10",
+        "excerpt": "Learn how to integrate smooth animations in your React applications using Framer Motion."
+      }
+    ]
+  },
+  "skills": {
+    "title": "Technical Expertise",
+    "subtitle": "Mastering modern technologies to create scalable and innovative solutions",
+    "categories": [
+      {
+        "title": "Frontend Development",
+        "skills": [
+          { "name": "React", "level": 95 },
+          { "name": "TypeScript", "level": 90 },
+          { "name": "Next.js", "level": 85 },
+          { "name": "Tailwind CSS", "level": 90 },
+          { "name": "Three.js", "level": 80 }
+        ]
+      },
+      {
+        "title": "Backend Development",
+        "skills": [
+          { "name": "Node.js", "level": 90 },
+          { "name": "ASP.NET", "level": 85 },
+          { "name": "Express", "level": 90 },
+          { "name": "MongoDB", "level": 85 },
+          { "name": "MSSQL", "level": 85 }
+        ]
+      },
+      {
+        "title": "Mobile & DevOps",
+        "skills": [
+          { "name": "React Native", "level": 85 },
+          { "name": "Docker", "level": 80 },
+          { "name": "Git", "level": 90 },
+          { "name": "CI/CD", "level": 85 },
+          { "name": "AWS", "level": 80 }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "meta": {
+    "title": "אוראל חלפון | מפתח פול סטאק",
+    "description": "תיק עבודות מקצועי של אוראל חלפון, מפתח פול סטאק המתמחה ב-MERN, C#/.NET ו-SQL Server. מציג יישומים סקלאביליים, חוויית משתמש מותאמת ואדריכלות חזקה.",
+    "keywords": "פול סטאק, MERN, C#, .NET, SQL Server, מפתח, תיק עבודות, UI/UX, Framer Motion",
+    "socialLinks": {
+      "linkedin": "https://www.linkedin.com/in/orelchalfon",
+      "github": "https://github.com/orelchalfon",
+      "twitter": "https://twitter.com/orelchalfon"
+    }
+  },
+  "nav": {
+    "home": "בית",
+    "services": "שירותים",
+    "portfolio": "תיק עבודות",
+    "about": "אודות",
+    "contact": "צור קשר"
+  },
+  "hero": {
+    "name": "אוראל חלפון",
+    "title": "מפתח פול סטאק | מומחה MERN ו-C#/.NET",
+    "description": "מפתח פול סטאק נלהב המתמחה בטכנולוגיות MERN עם ניסיון ב-C#/.NET ו-SQL Server. בונה יישומים סקלאביליים עם דגש על חוויית משתמש מיטבית ואדריכלות חזקה.",
+    "cta": {
+      "viewProjects": "צפה בפרויקטים",
+      "hireUs": "צור קשר"
+    },
+    "tech": {
+      "react": "React.js",
+      "nodejs": "Node.js",
+      "typescript": "TypeScript",
+      "mongodb": "MongoDB",
+      "express": "Express.js",
+      "reactNative": "React Native",
+      "aspnet": "ASP.NET",
+      "mssql": "SQL Server"
+    }
+  },
+  "services": {
+    "title": "השירותים שאני מציע",
+    "additionalTitle": "שירותים נוספים",
+    "mainServices": [
+      {
+        "icon": "💻",
+        "title": "פיתוח פול סטאק",
+        "description": "פיתוח יישומים סקלאביליים באמצעות טכנולוגיות MERN, C#/.NET ו-SQL Server."
+      },
+      {
+        "icon": "🎨",
+        "title": "אופטימיזציה ל-UI/UX",
+        "description": "עיצוב ממשקי משתמש רספונסיביים עם אנימציות חלקות באמצעות Framer Motion."
+      },
+      {
+        "icon": "🎯",
+        "title": "פיתוח Backend",
+        "description": "בניית מערכות Backend חזקים עם Node.js, Express.js, C# ו-ASP.NET."
+      },
+      {
+        "icon": "🎬",
+        "title": "אנימציות ואינטראקציה",
+        "description": "שיפור חוויית המשתמש עם אנימציות אינטראקטיביות מתקדמות."
+      },
+      {
+        "icon": "📸",
+        "title": "אינטגרציית API",
+        "description": "אינטגרציה ואופטימיזציה של RESTful APIs לתקשורת נתונים מאובטחת."
+      },
+      {
+        "icon": "🎥",
+        "title": "אופטימיזציית ביצועים",
+        "description": "שיפור ביצועים באמצעות אופטימיזציה של קוד, שימוש במטמון ואדריכלות סקלאבילית."
+      }
+    ],
+    "consulting": {
+      "title": "ייעוץ טכני",
+      "description": "מתן ייעוץ מומחה בעיצוב ארכיטקטורה, אסטרטגיית טכנולוגיה ואופטימיזציית ביצועים.",
+      "feature1": "עיצוב ארכיטקטורה",
+      "feature2": "אסטרטגיית טכנולוגיה",
+      "feature3": "אופטימיזציית ביצועים"
+    },
+    "maintenance": {
+      "title": "תחזוקה",
+      "description": "תמיכה מתמשכת ועדכונים שוטפים לשמירה על ביצועים ואבטחת המערכות.",
+      "feature1": "תמיכה 24/7",
+      "feature2": "עדכונים שוטפים",
+      "feature3": "ניטור ביצועים"
+    }
+  },
+  "portfolio": {
+    "title": "תיק העבודות שלי",
+    "filter": {
+      "all": "הכל",
+      "web": "ווב",
+      "mobile": "מובייל",
+      "design": "עיצוב"
+    },
+    "featured": {
+      "title": "פרויקטים מובילים",
+      "project1": {
+        "title": "PlaceShare",
+        "description": "יישום מלא מבוסס MERN עם אימות מבוסס תפקידים, העלאת קבצים מאובטחת, ואנימציות אינטראקטיביות באמצעות Framer Motion."
+      },
+      "project2": {
+        "title": "Food Order App",
+        "description": "אפליקציית הזמנות אוכל רספונסיבית ומודולרית עם ניהול מצב יעיל ואינטגרציית API דינמית."
+      }
+    },
+    "viewProject": "צפה בפרויקט"
+  },
+  "about": {
+    "title": "אודות אוראל חלפון",
+    "description": "מפתח פול סטאק נלהב המתמחה בטכנולוגיות MERN, C#/.NET ו-SQL Server. אני בונה יישומים סקלאביליים עם דגש על חוויית משתמש מיטבית ואדריכלות חזקה.",
+    "stats": {
+      "years": "שנות ניסיון",
+      "clients": "לקוחות מרוצים",
+      "projects": "פרויקטים שסופקו",
+      "awards": "הישגים והסמכות"
+    },
+    "mission": {
+      "title": "המשימה שלי",
+      "description": "ליצור חוויות דיגיטליות מעצימות באמצעות טכנולוגיה חדשנית ועיצוב מתקדם."
+    },
+    "vision": {
+      "title": "החזון שלי",
+      "description": "להמשיך להתפתח כמפתח ולהציב סטנדרטים חדשים בתחום הפיתוח הדיגיטלי."
+    },
+    "team": {
+      "title": "רשת מקצועית",
+      "member1": {
+        "name": "ד\"ר אלי כהן",
+        "role": "יועץ טכני"
+      },
+      "member2": {
+        "name": "שרה לוי",
+        "role": "יועצת UX"
+      },
+      "member3": {
+        "name": "דוד בר",
+        "role": "ארכיטקט תוכנה"
+      }
+    }
+  },
+  "contact": {
+    "title": "צור קשר עם אוראל",
+    "phoneTitle": "טלפון",
+    "emailTitle": "דוא״ל",
+    "addressTitle": "כתובת",
+    "form": {
+      "name": "השם שלך",
+      "email": "הדוא״ל שלך",
+      "message": "ההודעה שלך",
+      "submit": "שלח הודעה"
+    }
+  },
+  "testimonials": {
+    "title": "עדויות",
+    "items": [
+      {
+        "name": "לקוח א",
+        "position": "מנכ\"ל, חברה א",
+        "testimonial": "אוראל הוא מפתח מצוין המספק עבודה איכותית ובזמנים."
+      },
+      {
+        "name": "לקוח ב",
+        "position": "CTO, חברה ב",
+        "testimonial": "המומחיות הטכנית וכישורי פתרון הבעיות שלו הם מהטובים בשוק."
+      }
+    ]
+  },
+  "blog": {
+    "title": "מאמרים אחרונים",
+    "items": [
+      {
+        "title": "אופטימיזציה ליישומי MERN לביצועים מיטביים",
+        "date": "2024-04-15",
+        "excerpt": "גלה את שיטות העבודה הטובות ביותר לאופטימיזציה של יישומי MERN עבור מהירות וסקלאביליות."
+      },
+      {
+        "title": "שיפור חוויית המשתמש עם Framer Motion",
+        "date": "2024-03-10",
+        "excerpt": "למד איך לשלב אנימציות חלקות ביישומי React שלך באמצעות Framer Motion."
+      }
+    ]
+  },
+  "skills": {
+    "title": "מומחיות טכנית",
+    "subtitle": "שליטה בטכנולוגיות מודרניות ליצירת פתרונות חדשניים וסקלאביליים",
+    "categories": [
+      {
+        "title": "פיתוח צד לקוח",
+        "skills": [
+          { "name": "React", "level": 95 },
+          { "name": "TypeScript", "level": 90 },
+          { "name": "Next.js", "level": 85 },
+          { "name": "Tailwind CSS", "level": 90 },
+          { "name": "Three.js", "level": 80 }
+        ]
+      },
+      {
+        "title": "פיתוח צד שרת",
+        "skills": [
+          { "name": "Node.js", "level": 90 },
+          { "name": "ASP.NET", "level": 85 },
+          { "name": "Express", "level": 90 },
+          { "name": "MongoDB", "level": 85 },
+          { "name": "MSSQL", "level": 85 }
+        ]
+      },
+      {
+        "title": "מובייל & דבאופס",
+        "skills": [
+          { "name": "React Native", "level": 85 },
+          { "name": "Docker", "level": 80 },
+          { "name": "Git", "level": 90 },
+          { "name": "CI/CD", "level": 85 },
+          { "name": "AWS", "level": 80 }
+        ]
+      }
+    ]
+  }
+}
