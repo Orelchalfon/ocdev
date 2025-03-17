@@ -1,39 +1,26 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { en, he } from "../config/translation";
+import { Language, Translations } from "../types/translations";
 
-// Updated type definitions that can handle arrays
-type TranslationValue = string | TranslationObject | TranslationArray | Record<string, any>;
-
-interface TranslationObject {
-  [key: string]: TranslationValue;
-}
-
-type TranslationArray = Array<TranslationObject>;
-
-
-
-// Define the shape of our LanguageContext
 interface LanguageContextType {
-  language: string;
+  language: Language;
   toggleLanguage: () => void;
   t: (key: string) => string;
 }
 
-// Create the LanguageContext
-const defaultLanguage = "en";
+const defaultLanguage: Language = "en";
 
 const LanguageContext = createContext<LanguageContextType>({
   language: defaultLanguage,
   t: (key: string) => key,
-  toggleLanguage: () => { },
+  toggleLanguage: () => {},
 });
 
-// Define the LanguageProvider component
-const LanguageContextProvider = ({ children }: { children: ReactNode }) => {
-  const translations: Record<string, any> = { en, he };
+const translations: Record<Language, Translations> = { en, he };
 
-  const [language, setLanguage] = useState<string>(() => {
-    const savedLanguage = localStorage.getItem("language");
+const LanguageContextProvider = ({ children }: { children: ReactNode }) => {
+  const [language, setLanguage] = useState<Language>(() => {
+    const savedLanguage = localStorage.getItem("language") as Language;
     return savedLanguage || defaultLanguage;
   });
 
@@ -42,13 +29,19 @@ const LanguageContextProvider = ({ children }: { children: ReactNode }) => {
   }, [language]);
 
   const toggleLanguage = () => {
-    setLanguage(prevLang => prevLang === "en" ? "he" : "en");
+    setLanguage((prevLang) => (prevLang === "en" ? "he" : "en"));
   };
 
   // Function to translate keys
-  const t = (key: string): string => {
-    const value = key.split('.').reduce((obj: any, key) => obj?.[key], translations[language]);
-    return typeof value === 'string' ? value : key;
+  const t = (key: string): string | unknown => {
+    const value = key.split(".").reduce((obj: unknown, key) => {
+      if (typeof obj === "object" && obj !== null) {
+        return (obj as Record<string, unknown>)[key];
+      }
+      return undefined;
+    }, translations[language]);
+
+    return value ?? key;
   };
 
   return (
@@ -58,6 +51,4 @@ const LanguageContextProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-// Custom hook to use the LanguageContext
 export { LanguageContextProvider as default, LanguageContext };
-

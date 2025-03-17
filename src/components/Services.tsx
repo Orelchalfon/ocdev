@@ -1,6 +1,7 @@
-import { motion } from 'framer-motion';
-import { useLanguage } from '../hooks/useLanguage';
-import { useTheme } from '../hooks/useTheme';
+import { motion } from "framer-motion";
+import { useLanguage } from "../hooks/useLanguage";
+import { useTheme } from "../hooks/useTheme";
+import { Service } from "../types/translations";
 
 // Animation variants
 const container = {
@@ -19,50 +20,48 @@ const item = {
 };
 
 const Services = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { theme } = useTheme();
-  
-  // Get main services from translation
-  const mainServices = t('services.mainServices') as unknown as Array<{
-    icon: string;
-    title: string;
-    description: string;
-  }>;
+
+  // Get main services from translation with proper type checking
+  const mainServices =
+    (t("services.mainServices") as Service[] | unknown) || [];
 
   return (
-    <section className="py-16 md:py-24" id="services">
-      <div className="text-center mb-16">
+    <section className='py-16 md:py-24' id='services'>
+      <div className='text-center mb-16'>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-bold mb-6"
+          className='text-3xl md:text-4xl font-bold mb-6'
         >
-          {t('services.title')}
+          {t("services.title") as string}
         </motion.h2>
       </div>
 
       <motion.div
         variants={container}
-        initial="hidden"
-        whileInView="show"
+        initial='hidden'
+        whileInView='show'
         viewport={{ once: true }}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
       >
-        {mainServices && mainServices.map((service, index) => (
+        {mainServices.map((service: Service, index: number) => (
           <motion.div
             key={index}
             variants={item}
-            className={`group p-8 rounded-2xl ${
-              theme === "dark"
-                ? "bg-gray-900/50 hover:bg-gray-800/50"
-                : "bg-gray-100 hover:bg-gray-200"
-            } transition-colors`}
+            className={`group p-8 rounded-2xl flex flex-col items${language === "he" ? "-end" : "-start"} ${theme === "dark"
+              ? "bg-gray-900/50 hover:bg-gray-800/50"
+              : "bg-gray-100 hover:bg-gray-200"
+              } transition-colors`}
           >
-            <div className="mb-4">
-              <span className="text-4xl">{service.icon}</span>
+            <div className='mb-4'>
+              <span className='text-4xl'>{service.icon}</span>
             </div>
-            <h3 className={`text-xl font-semibold mb-3 group-hover:text-indigo-400 transition-colors`}>
+            <h3
+              className={`text-xl font-semibold mb-3 group-hover:text-indigo-400 transition-colors`}
+            >
               {service.title}
             </h3>
             <p className={theme === "dark" ? "text-gray-400" : "text-gray-600"}>
@@ -75,4 +74,4 @@ const Services = () => {
   );
 };
 
-export default Services; 
+export default Services;

@@ -2,29 +2,26 @@ import { motion } from "framer-motion";
 import ServicesComponent from "../components/Services";
 import { useLanguage } from "../hooks/useLanguage";
 import { useTheme } from "../hooks/useTheme";
+import { ConsultingService } from "../types/translations";
 
 const Services = () => {
   const { t } = useLanguage();
   const { theme } = useTheme();
 
-  const additionalServices = [
+  const additionalServices: ConsultingService[] = [
     {
       title: t("services.consulting.title"),
       description: t("services.consulting.description"),
-      features: [
-        t("services.consulting.feature1"),
-        t("services.consulting.feature2"),
-        t("services.consulting.feature3"),
-      ],
+      feature1: t("services.consulting.feature1"),
+      feature2: t("services.consulting.feature2"),
+      feature3: t("services.consulting.feature3"),
     },
     {
       title: t("services.maintenance.title"),
       description: t("services.maintenance.description"),
-      features: [
-        t("services.maintenance.feature1"),
-        t("services.maintenance.feature2"),
-        t("services.maintenance.feature3"),
-      ],
+      feature1: t("services.maintenance.feature1"),
+      feature2: t("services.maintenance.feature2"),
+      feature3: t("services.maintenance.feature3"),
     },
   ];
 
@@ -70,30 +67,32 @@ const Services = () => {
                 {service.description}
               </p>
               <ul className='space-y-3'>
-                {service.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className='flex items-center'>
-                    <svg
-                      className='w-5 h-5 text-indigo-500 mr-3'
-                      fill='none'
-                      stroke='currentColor'
-                      viewBox='0 0 24 24'
-                    >
-                      <path
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        strokeWidth={2}
-                        d='M5 13l4 4L19 7'
-                      />
-                    </svg>
-                    <span
-                      className={
-                        theme === "dark" ? "text-gray-300" : "text-gray-700"
-                      }
-                    >
-                      {feature}
-                    </span>
-                  </li>
-                ))}
+                {[service.feature1, service.feature2, service.feature3].map(
+                  (feature, featureIndex) => (
+                    <li key={featureIndex} className='flex items-center'>
+                      <svg
+                        className='w-5 h-5 text-indigo-500 mr-3'
+                        fill='none'
+                        stroke='currentColor'
+                        viewBox='0 0 24 24'
+                      >
+                        <path
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                          strokeWidth={2}
+                          d='M5 13l4 4L19 7'
+                        />
+                      </svg>
+                      <span
+                        className={
+                          theme === "dark" ? "text-gray-300" : "text-gray-700"
+                        }
+                      >
+                        {feature}
+                      </span>
+                    </li>
+                  )
+                )}
               </ul>
             </motion.div>
           ))}
