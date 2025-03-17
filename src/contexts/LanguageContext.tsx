@@ -5,7 +5,7 @@ import { Language, Translations } from "../types/translations";
 interface LanguageContextType {
   language: Language;
   toggleLanguage: () => void;
-  t: (key: string) => string;
+  t: (key: string) => string | unknown;
 }
 
 const defaultLanguage: Language = "en";

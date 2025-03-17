@@ -20,12 +20,11 @@ const item = {
 };
 
 const Services = () => {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   const { theme } = useTheme();
 
   // Get main services from translation with proper type checking
-  const mainServices =
-    (t("services.mainServices") as Service[] | unknown) || [];
+  const mainServices = (t("services.mainServices") as Service[]) || [];
 
   return (
     <section className='py-16 md:py-24' id='services'>
@@ -47,14 +46,15 @@ const Services = () => {
         viewport={{ once: true }}
         className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
       >
-        {mainServices.map((service: Service, index: number) => (
+        {mainServices.map((service, index) => (
           <motion.div
             key={index}
             variants={item}
-            className={`group p-8 rounded-2xl flex flex-col items${language === "he" ? "-end" : "-start"} ${theme === "dark"
-              ? "bg-gray-900/50 hover:bg-gray-800/50"
-              : "bg-gray-100 hover:bg-gray-200"
-              } transition-colors`}
+            className={`group p-8 rounded-2xl ${
+              theme === "dark"
+                ? "bg-gray-900/50 hover:bg-gray-800/50"
+                : "bg-gray-100 hover:bg-gray-200"
+            } transition-colors`}
           >
             <div className='mb-4'>
               <span className='text-4xl'>{service.icon}</span>
@@ -64,7 +64,9 @@ const Services = () => {
             >
               {service.title}
             </h3>
-            <p className={theme === "dark" ? "text-gray-400" : "text-gray-600"}>
+            <p
+              className={theme === "dark" ? "text-gray-400" : "text-gray-600"}
+            >
               {service.description}
             </p>
           </motion.div>

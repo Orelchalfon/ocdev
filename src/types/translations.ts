@@ -42,4 +42,4 @@ export interface Translations {
   [key: string]: any; // For other sections
 }
 
-export type Language = 'en' | 'he'; 
+export type Language = 'en' | 'he';
