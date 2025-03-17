@@ -5,7 +5,8 @@ import { Language, Translations } from "../types/translations";
 interface LanguageContextType {
   language: Language;
   toggleLanguage: () => void;
-  t: (key: string) => string | unknown;
+  t: (key: string) => string;
+  tArray: <T>(key: string) => T[];
 }
 
 const defaultLanguage: Language = "en";
@@ -14,6 +15,7 @@ const LanguageContext = createContext<LanguageContextType>({
   language: defaultLanguage,
   t: (key: string) => key,
   toggleLanguage: () => {},
+  tArray: (key: string) => [],
 });
 
 const translations: Record<Language, Translations> = { en, he };
@@ -33,19 +35,37 @@ const LanguageContextProvider = ({ children }: { children: ReactNode }) => {
   };
 
   // Function to translate keys
-  const t = (key: string): string | unknown => {
-    const value = key.split(".").reduce((obj: unknown, key) => {
-      if (typeof obj === "object" && obj !== null) {
-        return (obj as Record<string, unknown>)[key];
-      }
-      return undefined;
-    }, translations[language]);
+  const t = (key: string): string => {
+    const value = key
+      .split(".")
+      .reduce(
+        (obj: unknown, key) =>
+          typeof obj === "object" && obj !== null
+            ? (obj as Record<string, unknown>)[key]
+            : undefined,
+        translations[language]
+      );
 
-    return value ?? key;
+    return typeof value === "string" ? value : key;
+  };
+
+  // Add typed array translation helper
+  const tArray = <T,>(key: string): T[] => {
+    const value = key
+      .split(".")
+      .reduce(
+        (obj: unknown, key) =>
+          typeof obj === "object" && obj !== null
+            ? (obj as Record<string, unknown>)[key]
+            : undefined,
+        translations[language]
+      );
+
+    return Array.isArray(value) ? (value as T[]) : [];
   };
 
   return (
-    <LanguageContext.Provider value={{ language, toggleLanguage, t }}>
+    <LanguageContext.Provider value={{ language, toggleLanguage, t, tArray }}>
       {children}
     </LanguageContext.Provider>
   );

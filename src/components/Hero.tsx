@@ -32,18 +32,20 @@ const Hero = memo(() => {
       { name: t("hero.tech.aspnet"), icon: "🔷" },
       { name: t("hero.tech.mssql"), icon: "💾" },
     ],
-    [t],
+    [t]
   );
 
   // Memoize direction-specific classes
-  const directionClasses = useMemo(() => ({
-    textAlign: isRTL ? "text-right" : "text-left",
-    flexDirection: isRTL ? "flex-row-reverse" : "flex-row",
-    gridColumns: isRTL ? "md:col-start-2" : "",
-    techSpherePosition: isRTL ? "md:col-start-1 row-start-1" : "",
-    marginClasses: isRTL ? "ml-2" : "mr-2",
-    
-  }), [isRTL]);
+  const directionClasses = useMemo(
+    () => ({
+      textAlign: isRTL ? "text-right" : "text-left",
+      flexDirection: isRTL ? "flex-row-reverse" : "flex-row",
+      gridColumns: isRTL ? "md:col-start-2" : "",
+      techSpherePosition: isRTL ? "md:col-start-1 row-start-1" : "",
+      marginClasses: isRTL ? "ml-2" : "mr-2",
+    }),
+    [isRTL]
+  );
 
   useEffect(() => {
     controls.start({
@@ -67,7 +69,7 @@ const Hero = memo(() => {
         },
       }),
     }),
-    [],
+    []
   );
 
   // Memoize gradient class based on theme
@@ -76,48 +78,49 @@ const Hero = memo(() => {
       isDark
         ? "from-indigo-900/20 via-purple-900/10 to-transparent"
         : "from-indigo-500/10 via-purple-500/5 to-transparent",
-    [isDark],
+    [isDark]
   );
 
   // Memoize scroll indicator styles
   const scrollIndicatorStyles = useMemo(
     () => ({
-      container: !isDark
-        ? "border-gray-700/50"
-        : "border-gray-300/50",
-      dot: !isDark
-        ? "bg-gray-700/50"
-        : "bg-gray-300/50",
+      container: !isDark ? "border-gray-700/50" : "border-gray-300/50",
+      dot: !isDark ? "bg-gray-700/50" : "bg-gray-300/50",
     }),
-    [isDark],);
+    [isDark]
+  );
 
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden pt-20">
+    <section className='relative flex min-h-screen items-center overflow-hidden pt-20'>
       {/* Particle Background */}
       <ParticleField isDark={isDark} />
 
       {/* Background gradient */}
       <div className={`absolute inset-0 bg-gradient-to-br ${gradientClass}`} />
 
-      <div className="container relative z-10 mx-auto px-4 lg:px-8">
-        <div className={`grid grid-cols-1 items-center gap-12 lg:grid-cols-2 ${directionClasses.textAlign}`}>
+      <div className='container relative z-10 mx-auto px-4 lg:px-8'>
+        <div
+          className={`grid grid-cols-1 items-center gap-12 lg:grid-cols-2 ${directionClasses.textAlign}`}
+        >
           {/* Left Content */}
-          <motion.div className={`col-span-2 md:col-span-1 ${directionClasses.gridColumns}`}
+          <motion.div
+            className={`col-span-2 md:col-span-1 ${directionClasses.gridColumns}`}
             initial={{ opacity: 0, x: isRTL ? 50 : -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="overflow-hidden">
+            <div className='overflow-hidden'>
               <motion.h1
-                className="mb-2 text-2xl font-bold lg:text-7xl"
+                className='mb-2 text-2xl font-bold lg:text-7xl'
                 custom={1}
-                initial="hidden"
-                animate="visible"
+                initial='hidden'
+                animate='visible'
                 variants={textVariants}
               >
                 <motion.span
-                  className={`inline-block ${isDark ? "text-white" : "text-gray-900"
-                    }`}
+                  className={`inline-block ${
+                    isDark ? "text-white" : "text-gray-900"
+                  }`}
                   whileHover={{ scale: 1.05 }}
                 >
                   {t("hero.name")}
@@ -126,13 +129,13 @@ const Hero = memo(() => {
 
               <motion.div
                 custom={2}
-                initial="hidden"
-                animate="visible"
+                initial='hidden'
+                animate='visible'
                 variants={textVariants}
-                className="mb-6"
+                className='mb-6'
               >
-                <h2 className="text-5xl font-bold lg:text-7xl">
-                  <span className="animate-gradient bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                <h2 className='text-5xl font-bold lg:text-7xl'>
+                  <span className='animate-gradient bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent'>
                     {t("hero.title")}
                   </span>
                 </h2>
@@ -140,10 +143,10 @@ const Hero = memo(() => {
             </div>
 
             <motion.p
-              className="mb-8 max-w-2xl text-xl text-gray-400"
+              className='mb-8 max-w-2xl text-xl text-gray-400'
               custom={3}
-              initial="hidden"
-              animate="visible"
+              initial='hidden'
+              animate='visible'
               variants={textVariants}
             >
               {t("hero.description")}
@@ -159,10 +162,11 @@ const Hero = memo(() => {
               {technologies.map((tech, index) => (
                 <motion.button
                   key={tech.name}
-                  className={`rounded-lg px-4 py-2 text-sm font-medium backdrop-blur-sm transition-all duration-300 ${isDark
-                    ? "bg-gray-800/30 text-gray-300 hover:bg-gray-700/50"
-                    : "bg-gray-100/80 text-gray-800 hover:bg-gray-200/90"
-                    }`}
+                  className={`rounded-lg px-4 py-2 text-sm font-medium backdrop-blur-sm transition-all duration-300 ${
+                    isDark
+                      ? "bg-gray-800/30 text-gray-300 hover:bg-gray-700/50"
+                      : "bg-gray-100/80 text-gray-800 hover:bg-gray-200/90"
+                  }`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 + index * 0.1 }}
@@ -188,27 +192,28 @@ const Hero = memo(() => {
               transition={{ delay: 0.8 }}
             >
               <motion.a
-                href="#portfolio"
-                className="group relative overflow-hidden rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-8 py-3 font-medium text-white order-1"
+                href='#portfolio'
+                className='group relative overflow-hidden rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-8 py-3 font-medium text-white order-1'
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span className="relative z-10">
+                <span className='relative z-10'>
                   {t("hero.cta.viewProjects")}
                 </span>
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600"
+                  className='absolute inset-0 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600'
                   initial={{ x: "100%" }}
                   whileHover={{ x: 0 }}
                   transition={{ duration: 0.3 }}
                 />
               </motion.a>
               <motion.a
-                href="#contact"
-                className={`rounded-lg border px-8 py-3 font-medium backdrop-blur-sm transition-all duration-300 ${isDark
-                  ? "border-gray-700 text-gray-300 hover:bg-gray-800/50"
-                  : "border-gray-300 text-gray-800 hover:bg-gray-100/80"
-                  }`}
+                href='#contact'
+                className={`rounded-lg border px-8 py-3 font-medium backdrop-blur-sm transition-all duration-300 ${
+                  isDark
+                    ? "border-gray-700 text-gray-300 hover:bg-gray-800/50"
+                    : "border-gray-300 text-gray-800 hover:bg-gray-100/80"
+                }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -231,12 +236,13 @@ const Hero = memo(() => {
 
       {/* Scroll Indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 transform"
+        className='absolute bottom-8 left-1/2 -translate-x-1/2 transform'
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
       >
-        <motion.div className={`flex h-10 w-6 justify-center rounded-full border-2 ${scrollIndicatorStyles.container}`}
+        <motion.div
+          className={`flex h-10 w-6 justify-center rounded-full border-2 ${scrollIndicatorStyles.container}`}
           animate={{
             y: [0, 10, 0],
             opacity: [0.5, 1, 0.5],
@@ -247,7 +253,6 @@ const Hero = memo(() => {
             repeatType: "reverse",
             ease: "easeInOut",
           }}
-
         >
           <motion.div
             animate={{

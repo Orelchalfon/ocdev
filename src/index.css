@@ -95,16 +95,16 @@
     animation: animateGradient 6s ease infinite;
   }
 
-.tech-sphere-container {
-  @apply relative rounded-full overflow-hidden;
-  background: linear-gradient(
-    135deg,
-    rgba(99, 102, 241, 0.1),
-    rgba(168, 85, 247, 0.1)
-  );
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-}
+  .tech-sphere-container {
+    @apply relative rounded-full overflow-hidden;
+    background: linear-gradient(
+      135deg,
+      rgba(99, 102, 241, 0.1),
+      rgba(168, 85, 247, 0.1)
+    );
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
 
   .nav-link {
     @apply px-4 py-2 rounded-lg transition-all duration-300 font-medium text-sm;
@@ -137,18 +137,18 @@ html {
     direction: rtl;
     text-align: right;
   }
-  
+
   .ltr {
     direction: ltr;
     text-align: left;
   }
-  
+
   /* RTL specific adjustments */
   .rtl .icon-start {
     margin-left: 0.5rem;
     margin-right: 0;
   }
-  
+
   .ltr .icon-start {
     margin-right: 0.5rem;
     margin-left: 0;
