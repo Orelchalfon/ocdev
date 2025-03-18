@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import ContactForm from "../components/Contact";
+import FoldableMap from "../components/ui/FoldableMap";
 import { useLanguage } from "../hooks/useLanguage";
 import { useTheme } from "../hooks/useTheme";
 
@@ -120,20 +121,7 @@ const Contact = () => {
 
         {/* Map Section */}
         <section className='mb-24'>
-          <div
-            className={`w-full h-96 rounded-2xl overflow-hidden ${
-              theme === "dark" ? "bg-gray-900/50" : "bg-gray-100"
-            }`}
-          >
-            {/* Add your map component here */}
-            <div className='w-full h-full bg-gray-800/50 flex items-center justify-center'>
-              <span
-                className={theme === "dark" ? "text-gray-400" : "text-gray-600"}
-              >
-                Map Component
-              </span>
-            </div>
-          </div>
+          <FoldableMap />
         </section>
 
         {/* Contact Form */}

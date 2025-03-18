@@ -22,6 +22,8 @@
     /* Animation */
     --transition-duration: 200ms;
     --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+
+    background: hsl(73, 39%, 76%);
   }
 
   /* Scrollbar Styles */
@@ -111,6 +113,28 @@
     @apply hover:bg-gradient-to-r from-indigo-500/10 to-purple-500/10;
     @apply dark:text-gray-300 dark:hover:text-white;
     @apply text-gray-600 hover:text-gray-900;
+  }
+
+  .map-image {
+    background-image: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.5) 0%,
+        rgba(0, 0, 0, 0) 30%
+      ),
+      url("/assets/images/map.webp");
+    background-size: 300%;
+  }
+
+  .map-image:nth-child(1) {
+    background-position: 0% 0%, 0%;
+  }
+
+  .map-image:nth-child(2) {
+    background-position: 0% 33.3%, 50%;
+  }
+
+  .map-image:nth-child(3) {
+    background-position: 0% 66.6%, 100%;
   }
 }
 

@@ -43,7 +43,7 @@ export const Hero = ({ onExploreClick }: HeroProps) => {
     <section id='home' className='min-h-screen relative overflow-hidden'>
       <div className='max-w-7xl relative mx-auto grid grid-cols-1 md:grid-cols-2'>
         <motion.div
-          className={`max-w-3xl col-start-1 col-span-1 lg:col-start-1 lg:flex lg:flex-col ${directionClasses.textAlign}`}
+          className={`max-w-3xl flex flex-col ${directionClasses.textAlign}`}
           style={{
             y,
             x,
