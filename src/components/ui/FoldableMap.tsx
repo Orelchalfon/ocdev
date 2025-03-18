@@ -23,7 +23,6 @@ const FoldableMap = () => {
   const arrowRotation = useTransform(xDrag, [0, 300], [0, 180]);
 
   // Location coordinates for Avney Hefez, Israel
-  const location = { lat: 32.3518, lng: 34.9521 };
 
   useMotionValueEvent(xDrag, "change", (currentX) => {
     if (currentX > 260) {
@@ -40,6 +39,7 @@ const FoldableMap = () => {
   useEffect(() => {
     if (!showRealMap || !mapRef.current) return;
 
+    const location = { lat: 32.3518, lng: 34.9521 };
     let map: google.maps.Map | null = null;
     let marker: google.maps.Marker | null = null;
     let infoWindow: google.maps.InfoWindow | null = null;
