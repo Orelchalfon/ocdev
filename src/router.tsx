@@ -1,11 +1,12 @@
 import { AnimatePresence } from "framer-motion";
+import { lazy } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./components/Layout";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
 import Home from "./pages/Home";
-import Portfolio from "./pages/Portfolio";
-import Services from "./pages/Services";
+const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Portfolio = lazy(() => import("./pages/Portfolio"));
+const Services = lazy(() => import("./pages/Services"));
 
 const router = createBrowserRouter([
   {

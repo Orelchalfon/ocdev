@@ -22,7 +22,6 @@ export const Hero = ({ onExploreClick }: HeroProps) => {
   const directionClasses = useMemo(
     () => ({
       textAlign: isRTL ? "items-end text-right" : "",
-      flexDirection: isRTL ? "flex-row-reverse" : "flex-row",
     }),
     [isRTL]
   );
@@ -41,7 +40,7 @@ export const Hero = ({ onExploreClick }: HeroProps) => {
   const scale = useTransform(languageProgress, [0, 1], [0.95, 1]);
 
   return (
-    <section id='home' className='min-h-screen pt-32 px-6 overflow-hidden'>
+    <section id='home' className='min-h-screen relative overflow-hidden'>
       <div className='max-w-7xl relative mx-auto grid grid-cols-1 md:grid-cols-2'>
         <motion.div
           className={`max-w-3xl col-start-1 col-span-1 lg:col-start-1 lg:flex lg:flex-col ${directionClasses.textAlign}`}
@@ -81,21 +80,19 @@ export const Hero = ({ onExploreClick }: HeroProps) => {
           </motion.h1>
 
           <motion.p
-            className='text-xl text-gray-400 mb-8 max-w-2xl'
+            className={`text-xl text-gray-400 mb-8 max-w-2xl ${isRTL && "rtl"}`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.45 }}
           >
-            Crafting scalable and innovative solutions with cutting-edge
-            technology. Specializing in full-stack development with a focus on
-            performance and user experience.
+            {t("hero.description")}
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className={`flex flex-wrap gap-4 ${directionClasses.flexDirection}`}
+            className={`flex flex-wrap gap-4 `}
           >
             <motion.button
               className='px-8 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700 transition-all duration-300 shadow-lg shadow-purple-500/25'

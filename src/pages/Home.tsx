@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
-import Contact from "../components/Contact";
-import Portfolio from "../components/Portfolio";
+import { lazy } from "react";
 import { Hero } from "../components/Sections/Hero";
-import Skills from "../components/Skills";
+import WhyChooseUs from "../components/WhyChooseUs";
+const Skills = lazy(() => import("../components/Skills"));
+
+const Portfolio = lazy(() => import("../components/Portfolio"));
+const Contact = lazy(() => import("../components/Contact"));
 const Home = () => {
   return (
     <motion.div
@@ -11,6 +14,8 @@ const Home = () => {
       exit={{ opacity: 0 }}
     >
       <Hero onExploreClick={() => {}} key={"home"} />
+      <WhyChooseUs />
+
       <Skills />
       <Portfolio />
       <Contact />
