@@ -1,114 +1,84 @@
-import { motion } from "framer-motion";
-import { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useRef } from "react";
 
-interface Particle {
-  id: number;
-  x: number;
-  y: number;
-  size: number;
-  opacity: number;
-  color: string;
-  duration: number;
-  delay: number;
-}
+const ParticleField = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
-interface ParticleFieldProps {
-  isDark?: boolean;
-  count?: number;
-}
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-const ParticleField: React.FC<ParticleFieldProps> = memo(
-  ({ isDark = false, count = 50 }) => {
-    const [particles, setParticles] = useState<Particle[]>([]);
-    const [windowSize, setWindowSize] = useState({
-      width: typeof window !== 'undefined' ? window.innerWidth : 1920,
-      height: typeof window !== 'undefined' ? window.innerHeight : 1080
-    });
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
-    // Update window size on resize
-    useEffect(() => {
-      const handleResize = () => {
-        setWindowSize({
-          width: window.innerWidth,
-          height: window.innerHeight
+    const particles: Array<{
+      x: number;
+      y: number;
+      dx: number;
+      dy: number;
+      size: number;
+    }> = [];
+
+    const resize = () => {
+      canvas.width = canvas.offsetWidth * window.devicePixelRatio;
+      canvas.height = canvas.offsetHeight * window.devicePixelRatio;
+    };
+
+    const createParticles = () => {
+      for (let i = 0; i < 250; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          dx: (Math.random() - .5) * 0.5,
+          dy: (Math.random() - .5) * 0.5,
+          size: Math.random() * 10,
         });
-      };
+      }
+    };
 
-      window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Determine particle colors based on theme
-    const getParticleColors = useCallback((isDark: boolean) => {
-      return isDark 
-        ? ['rgba(139, 92, 246, 0.5)', 'rgba(79, 70, 229, 0.5)', 'rgba(67, 56, 202, 0.5)', 'rgba(124, 58, 237, 0.5)']
-        : ['rgba(165, 180, 252, 0.5)', 'rgba(196, 181, 253, 0.5)', 'rgba(186, 230, 253, 0.5)', 'rgba(199, 210, 254, 0.5)'];
-    }, []);
+      particles.forEach((particle, i) => {
+        particle.x += particle.dx;
+        particle.y += particle.dy;
 
-    // Generate particles
-    const generateParticles = useCallback(() => {
-      const colors = getParticleColors(isDark);
-      return Array.from({ length: count }, (_, i) => ({
-        id: i,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-       size: Math.random() * 2 + 10,
-        opacity: Math.random() * 0.4 + 0.1,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        duration: Math.random() * 10 + 10, // Slower, more subtle movement (10-30s)
-        delay: Math.random() * -10 // Staggered start times
-      }));
-    }, [count, isDark, getParticleColors]);
+        if (particle.x < 0 || particle.x > canvas.width) particle.dx *= -1;
+        if (particle.y < 0 || particle.y > canvas.height) particle.dy *= -1;
 
-    // Update particles when theme changes
-    useEffect(() => {
-      setParticles(generateParticles());
-    }, [isDark, generateParticles,count, windowSize]);
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(147, 51, 234, 0.2)";
+        ctx.fill();
 
-    return (
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        {particles.map((particle) => (
-          <motion.div
-            key={particle.id}
-            className="absolute rounded-full shadow-md shadow-slate-100 inset-0"
-            style={{
-              left: `${particle.x}%`,
-              top: `${particle.y}%`,
-              width: `${particle.size}px`,
-              height: `${particle.size}px`,
-              backgroundColor: particle.color,
-              opacity: particle.opacity,
-              backdropFilter: 'blur(10px)'
+        particles.forEach((particle2, j) => {
+          if (i === j) return;
+          const dx = particle.x - particle2.x;
+          const dy = particle.y - particle2.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
 
-            }}
-            animate={{
-              x: [
-                0,
-                Math.random() * 30 - 15,
-                Math.random() * 20 - 10,
-                Math.random() * 40 - 20,
-                0
-              ],
-              y: [
-                0,
-                Math.random() * 30 - 15,
-                Math.random() * 20 - 10,
-                Math.random() * 40 - 20,
-                0
-              ],
-            }}
-            transition={{
-              repeat: Infinity,
-              duration: particle.duration,
-              delay: particle.delay,
-              ease: "easeInOut",
-              times: [0, 0.25, 0.5, 0.75, 1]
-            }}
-          />
-        ))}
-      </div>
-    );
-  }
-);
+          if (distance < 100) {
+            ctx.beginPath();
+            ctx.moveTo(particle.x, particle.y);
+            ctx.lineTo(particle2.x, particle2.y);
+            ctx.strokeStyle = `rgba(147, 51, 234, ${
+              0.1 * (1 - distance / 100)
+            })`;
+            ctx.stroke();
+          }
+        });
+      });
 
+      requestAnimationFrame(animate);
+    };
+
+    resize();
+    createParticles();
+    animate();
+
+    window.addEventListener("resize", resize);
+    return () => window.removeEventListener("resize", resize);
+  }, []);
+
+  return <canvas ref={canvasRef} className='absolute inset-0 w-full h-full z-10' />;
+};
 export default ParticleField;

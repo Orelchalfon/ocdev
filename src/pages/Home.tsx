@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import Contact from "../components/Contact";
-import Hero from "../components/Hero";
 import Portfolio from "../components/Portfolio";
+import { Hero } from "../components/Sections/Hero";
 import Skills from "../components/Skills";
 const Home = () => {
   return (
@@ -10,7 +10,7 @@ const Home = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <Hero />
+      <Hero onExploreClick={() => {}} key={"home"} />
       <Skills />
       <Portfolio />
       <Contact />

@@ -54,9 +54,9 @@ const Layout = () => {
           }`}
         />
       </div>
-      
-      <ParticleField isDark={isDark} count={10} />
-      
+
+      <ParticleField />
+
       <Navigation />
 
       <motion.main
