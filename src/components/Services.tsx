@@ -20,11 +20,14 @@ const item = {
 };
 
 const Services = () => {
-  const { t, tArray } = useLanguage();
+  const { t } = useLanguage();
   const { theme } = useTheme();
 
-  // Get main services from translation with proper typing
-  const mainServices = tArray<Service>("services.mainServices");
+  // For strings
+  const title = t<string>("services.title");
+
+  // For arrays
+  const mainServices = t<Service[]>("services.mainServices");
 
   return (
     <section className='py-16 md:py-24' id='services'>
@@ -35,7 +38,7 @@ const Services = () => {
           viewport={{ once: true }}
           className='text-3xl md:text-4xl font-bold mb-6'
         >
-          {t("services.title")}
+          {title}
         </motion.h2>
       </div>
 

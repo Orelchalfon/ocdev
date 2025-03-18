@@ -24,8 +24,8 @@ const Contact = () => {
           />
         </svg>
       ),
-      title: t("contact.phone.title"),
-      content: "+1 (555) 123-4567",
+      title: t("contact.phoneTitle"),
+      content: "+972 (52) 636-5123",
     },
     {
       icon: (
@@ -43,8 +43,8 @@ const Contact = () => {
           />
         </svg>
       ),
-      title: t("contact.email.title"),
-      content: "info@OCD{'ev'}.com",
+      title: t("contact.emailTitle"),
+      content: "orelchalfon12@gmail.com",
     },
     {
       icon: (
@@ -68,8 +68,8 @@ const Contact = () => {
           />
         </svg>
       ),
-      title: t("contact.address.title"),
-      content: "123 Innovation Street, Tech City, TC 12345",
+      title: t("contact.addressTitle"),
+      content: "Avney Hefez, IL 4486100",
     },
   ];
 
