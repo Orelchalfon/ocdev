@@ -1,5 +1,5 @@
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useLanguage } from "../../hooks/useLanguage";
 import CodeSnippet from "../ui/CodeSnippet";
 import TechStack from "../ui/TechStack";
@@ -10,39 +10,47 @@ interface HeroProps {
 
 export const Hero = ({ onExploreClick }: HeroProps) => {
   const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 500], [0, 100]);
+  const y = useTransform(scrollY, [0, 500], [0, -150]);
   const opacity = useTransform(scrollY, [0, 350], [1, 0.25]);
 
   const { language, t } = useLanguage();
+
+  // Determine if current language is Hebrew (RTL)
+  const isRTL = language === "he";
+
+  // Responsive classes based on direction
+  const directionClasses = useMemo(
+    () => ({
+      textAlign: isRTL ? "items-end text-right" : "",
+      flexDirection: isRTL ? "flex-row-reverse" : "flex-row",
+    }),
+    [isRTL]
+  );
+
   const languageProgress = useSpring(0, {
     stiffness: 300,
     damping: 20,
   });
 
   useEffect(() => {
-    const target = language === "he" ? 1 : 0;
+    const target = isRTL ? 1 : 0;
     languageProgress.set(target);
-  }, [language, languageProgress]);
+  }, [isRTL, languageProgress]);
 
   const x = useTransform(languageProgress, [0, 1], ["0%", "75%"]);
   const scale = useTransform(languageProgress, [0, 1], [0.95, 1]);
 
   return (
-    <section
-      id='home'
-      className='min-h-screen pt-32 px-6 relative  overflow-hidden'
-    >
-      <div className='max-w-7xl mx-auto relative '>
+    <section id='home' className='min-h-screen pt-32 px-6 overflow-hidden'>
+      <div className='max-w-7xl relative mx-auto grid grid-cols-1 md:grid-cols-2'>
         <motion.div
-          className={`max-w-3xl flex flex-col ${
-            language === "he" && "items-end text-right"
-          }`}
+          className={`max-w-3xl col-start-1 col-span-1 lg:col-start-1 lg:flex lg:flex-col ${directionClasses.textAlign}`}
           style={{
             y,
             x,
             scale,
             opacity,
-            transformOrigin: language === "he" ? "right center" : "left center",
+            transformOrigin: isRTL ? "right center" : "left center",
           }}
         >
           <motion.div
@@ -57,8 +65,8 @@ export const Hero = ({ onExploreClick }: HeroProps) => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
             >
-              <span className='text-sm font-medium px-3 py-1  rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 '>
-                {t("hero.title")}
+              <span className='text-sm font-medium px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400'>
+                {t("hero.name")}
               </span>
             </motion.div>
           </motion.div>
@@ -69,7 +77,7 @@ export const Hero = ({ onExploreClick }: HeroProps) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
-            Orel Chalfon
+            {t("hero.title")}
           </motion.h1>
 
           <motion.p
@@ -87,22 +95,19 @@ export const Hero = ({ onExploreClick }: HeroProps) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className='flex flex-wrap gap-4'
+            className={`flex flex-wrap gap-4 ${directionClasses.flexDirection}`}
           >
             <motion.button
-              className='px-8 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 text-white
-                       hover:from-purple-700 hover:to-blue-700 transition-all duration-300
-                       shadow-lg shadow-purple-500/25'
+              className='px-8 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700 transition-all duration-300 shadow-lg shadow-purple-500/25'
               onClick={onExploreClick}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              View Projects
+              {t("hero.cta.viewProjects")}
             </motion.button>
             <motion.a
               href='#contact'
-              className='px-8 py-3 rounded-xl border border-white/10 hover:bg-white/5 transition-colors
-                       shadow-lg shadow-purple-500/10'
+              className='px-8 py-3 rounded-xl border border-white/10 hover:bg-white/5 transition-colors shadow-lg shadow-purple-500/10'
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -153,3 +158,5 @@ export const Hero = ({ onExploreClick }: HeroProps) => {
     </section>
   );
 };
+
+export default Hero;

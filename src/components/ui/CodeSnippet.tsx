@@ -22,11 +22,12 @@ const CodeSnippet = () => {
 
   return (
     <motion.div
-      className='lg:block lg:absolute lg:top-1/2 lg:-translate-y-1/2'
+      className='absolute top-1/2 -translate-y-1/2'
       style={{
         left,
         scale,
         opacity,
+        transformOrigin: language === "he" ? "right center" : "left center",
       }}
     >
       <pre className='text-sm bg-zinc-800 p-4 rounded-xl border border-zinc-700 font-mono'>

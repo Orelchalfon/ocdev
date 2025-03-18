@@ -93,7 +93,7 @@ const Hero = memo(() => {
   return (
     <section className='relative flex min-h-screen items-center overflow-hidden pt-20'>
       {/* Particle Background */}
-      <ParticleField  />
+      <ParticleField />
 
       {/* Background gradient */}
       <div className={`absolute inset-0 bg-gradient-to-br ${gradientClass}`} />
