@@ -1,5 +1,11 @@
 import { motion } from "framer-motion";
 import { Outlet, useLocation } from "react-router-dom";
+import {
+  useOutboundClickTracking,
+  usePageViewTracking,
+  useScrollTracking,
+  useSearchTracking,
+} from "../hooks/useAnalytics";
 import { useTheme } from "../hooks/useTheme";
 import Footer from "./Footer";
 import Navigation from "./Navigation/Navigation";
@@ -9,6 +15,11 @@ const Layout = () => {
   const { theme } = useTheme();
   const isDark = theme === "dark";
   const location = useLocation();
+
+  usePageViewTracking();
+  useScrollTracking();
+  useOutboundClickTracking();
+  useSearchTracking();
 
   const pageVariants = {
     initial: {

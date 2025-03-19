@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useReducer, useRef } from "react";
+import TrackedVideo from "./ui/TrackedVideo";
 
 const projects = [
   {
@@ -73,7 +74,7 @@ const Portfolio = () => {
   };
 
   return (
-    <section id='portfolio' aria-labelledby='portfolio-heading'>
+    <section className='py-16'>
       <motion.header
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -90,7 +91,7 @@ const Portfolio = () => {
         </h2>
       </motion.header>
 
-      <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8   '>
+      <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
         {projects.map((project, index) => (
           <motion.li
             key={index}
@@ -105,13 +106,17 @@ const Portfolio = () => {
             <article className='relative aspect-[16/9]'>
               <figure className='h-full'>
                 {project?.video && (
-                  <video
-                    ref={(el) => (videoRefs.current[index] = el)}
+                  <TrackedVideo
+                    ref={(el) =>
+                      (videoRefs.current[index] = el as HTMLVideoElement)
+                    }
                     src={project.video}
+                    title={project.title}
                     muted
                     loop
                     preload='metadata'
                     playsInline
+                    controls={false}
                     className='w-full h-full object-cover transition-transform duration-300 group-hover:scale-110'
                     aria-labelledby={`video-${index}-caption`}
                   />
@@ -132,37 +137,6 @@ const Portfolio = () => {
           </motion.li>
         ))}
       </ul>
-
-      <motion.footer
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className='text-center mt-12'
-      >
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className='bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg text-lg font-medium transition-colors inline-flex items-center gap-2'
-          aria-label='See more portfolio projects'
-        >
-          See More
-          <svg
-            className='w-5 h-5'
-            fill='none'
-            stroke='currentColor'
-            viewBox='0 0 24 24'
-            xmlns='http://www.w3.org/2000/svg'
-            aria-hidden='true'
-          >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              strokeWidth={2}
-              d='M17 8l4 4m0 0l-4 4m4-4H3'
-            />
-          </svg>
-        </motion.button>
-      </motion.footer>
     </section>
   );
 };
