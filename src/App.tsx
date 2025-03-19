@@ -2,7 +2,7 @@ import { LanguageContextProvider, ThemeContextProvider } from "./contexts";
 
 import ReactGA from "react-ga4";
 import Router from "./router";
-ReactGA.initialize("G-QTPX7BVWTH", {
+ReactGA.initialize(import.meta.env.VITE_GA_MI, {
   gaOptions: {
     send_page_view: false,
   },
