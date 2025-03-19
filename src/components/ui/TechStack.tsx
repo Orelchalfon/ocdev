@@ -13,7 +13,7 @@ const TechStack = () => {
 
   return (
     <div
-      className={`flex flex-wrap ${
+      className={`hidden md:flex md:flex-wrap ${
         language === "he" && "flex-row-reverse"
       } max-w-md gap-4 mt-8`}
     >

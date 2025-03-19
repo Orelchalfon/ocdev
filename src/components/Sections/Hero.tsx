@@ -21,7 +21,7 @@ export const Hero = ({ onExploreClick }: HeroProps) => {
   // Responsive classes based on direction
   const directionClasses = useMemo(
     () => ({
-      textAlign: isRTL ? "items-end text-right" : "",
+      textAlign: isRTL ? "items-end text-right" : "items-start text-left",
     }),
     [isRTL]
   );
@@ -118,7 +118,7 @@ export const Hero = ({ onExploreClick }: HeroProps) => {
         <CodeSnippet />
       </div>
       <motion.div
-        className='absolute bottom-20 left-1/2 transform -translate-x-1/2 md:bottom-8'
+        className='absolute bottom-4 left-1/2 transform -translate-x-1/2 md:bottom-8'
         style={{ opacity }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

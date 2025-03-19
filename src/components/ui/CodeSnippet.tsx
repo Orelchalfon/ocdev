@@ -22,7 +22,7 @@ const CodeSnippet = () => {
 
   return (
     <motion.div
-      className='absolute top-1/2 -translate-y-1/2'
+      className='py-2 lg:absolute lg:top-1/2 lg:-translate-y-1/2 '
       style={{
         left,
         scale,

@@ -66,7 +66,7 @@ const Layout = () => {
         animate='animate'
         exit='exit'
         transition={{ type: "spring" }}
-        className='min-h-screen relative z-10 px-4 lg:px-8 py-10 '
+        className='min-h-dvh relative z-10 px-4 lg:px-8 py-10 pt-24 '
       >
         <Outlet />
       </motion.main>
