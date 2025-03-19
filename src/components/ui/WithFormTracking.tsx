@@ -1,5 +1,5 @@
 import React, { ComponentType, useCallback } from "react";
-import analyticsService from "./analytics";
+import analyticsService from "../../utils/Analytics/analytics";
 
 interface WithFormTrackingProps {
   formName: string;

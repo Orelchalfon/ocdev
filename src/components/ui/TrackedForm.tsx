@@ -1,8 +1,6 @@
 import React, { FormEvent, ReactNode } from "react";
 
-import WithFormTracking, {
-  FormTrackingHandlers,
-} from "../../utils/Analytics/withFormTracking";
+import WithFormTracking, { FormTrackingHandlers } from "./WithFormTracking";
 interface TrackedFormProps {
   formName: string;
   formId?: string;
