@@ -2,12 +2,12 @@ import { AnimatePresence, motion, Variants } from "framer-motion";
 import { memo, useCallback, useMemo, useState } from "react";
 import { NavLink } from "react-router-dom";
 
-import { useLanguage } from "../hooks/useLanguage";
-import { useScrollAnimation } from "../hooks/useScrollAnimation";
-import { useTheme } from "../hooks/useTheme";
-import LanguageToggle from "./ui/LanguageToggle";
-import Menu from "./ui/Menu";
-import ThemeToggle from "./ui/ThemeToggle";
+import { useLanguage } from "../../hooks/useLanguage";
+import { useScrollAnimation } from "../../hooks/useScrollAnimation";
+import { useTheme } from "../../hooks/useTheme";
+import LanguageToggle from "../ui/LanguageToggle";
+import Menu from "./Menu";
+import ThemeToggle from "../ui/ThemeToggle";
 
 // Main Navigation component using memo to prevent unnecessary rerenders
 const Navigation = memo(() => {
@@ -41,23 +41,26 @@ const Navigation = memo(() => {
     <motion.header
       className='fixed top-0 left-0 right-0 z-50 px-4 pt-3'
       animate={hidden ? "hidden" : "visible"}
-      initial="visible"
+      initial='visible'
       whileHover={hidden ? "peeking" : "visible"}
-      variants={{
-        visible: { y: "0%" },
-        hidden: { y: "-90%" },
-        peeking: { y: "0%", cursor: "pointer" },
-      } as Variants}
+      variants={
+        {
+          visible: { y: "0%" },
+          hidden: { y: "-90%" },
+          peeking: { y: "0%", cursor: "pointer" },
+        } as Variants
+      }
       transition={{ duration: 0.2 }}
     >
       <nav className='max-w-3xl mx-auto'>
         <div
           className={`
           rounded-3xl px-6 py-5 
-          ${!isDark
+          ${
+            !isDark
               ? "bg-gray-900/80 shadow-lg shadow-purple-500/5"
               : "bg-white/80 shadow-lg shadow-indigo-500/5"
-            }
+          }
           backdrop-blur-md
         `}
         >
@@ -76,7 +79,10 @@ const Navigation = memo(() => {
             {/* Theme and Language Controls */}
             <div className='hidden md:flex items-center space-x-4'>
               <ThemeToggle isDark={isDark} toggleTheme={toggleTheme} />
-              <LanguageToggle language={language} toggleLanguage={toggleLanguage} />
+              <LanguageToggle
+                language={language}
+                toggleLanguage={toggleLanguage}
+              />
             </div>
 
             {/* Mobile Menu Button */}
@@ -87,9 +93,10 @@ const Navigation = memo(() => {
                 onClick={toggleMenu}
                 className={`
                   p-2 rounded-xl transition-colors
-                  ${!isDark
-                    ? "hover:bg-gray-800 text-gray-300"
-                    : "hover:bg-gray-100 text-gray-600"
+                  ${
+                    !isDark
+                      ? "hover:bg-gray-800 text-gray-300"
+                      : "hover:bg-gray-100 text-gray-600"
                   }
                 `}
               >
@@ -125,9 +132,10 @@ const Navigation = memo(() => {
               transition={{ duration: 0.3 }}
               className={`
                 md:hidden mt-2 py-4 px-6 rounded-2xl z-50
-                ${isDark
-                  ? "bg-gray-900/90 shadow-lg shadow-purple-500/5"
-                  : "bg-white/90 shadow-lg shadow-indigo-500/5"
+                ${
+                  isDark
+                    ? "bg-gray-900/90 shadow-lg shadow-purple-500/5"
+                    : "bg-white/90 shadow-lg shadow-indigo-500/5"
                 }
                 backdrop-blur-md
               `}
@@ -142,7 +150,10 @@ const Navigation = memo(() => {
               {/* Mobile theme and language toggles */}
               <div className='flex items-center space-x-3 mt-4 pt-3 border-t border-gray-700/20'>
                 <ThemeToggle isDark={isDark} toggleTheme={toggleTheme} />
-                <LanguageToggle language={language} toggleLanguage={toggleLanguage} />
+                <LanguageToggle
+                  language={language}
+                  toggleLanguage={toggleLanguage}
+                />
               </div>
             </motion.div>
           )}

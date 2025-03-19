@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Outlet, useLocation } from "react-router-dom";
 import { useTheme } from "../hooks/useTheme";
 import Footer from "./Footer";
-import Navigation from "./Navigation";
+import Navigation from "./Navigation/Navigation";
 import ParticleField from "./effects/ParticleField";
 
 const Layout = () => {
