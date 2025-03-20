@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Suspense, lazy } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import {
   useOutboundClickTracking,
@@ -9,7 +10,9 @@ import {
 import { useTheme } from "../hooks/useTheme";
 import Footer from "./Footer";
 import Navigation from "./Navigation/Navigation";
-import ParticleField from "./effects/ParticleField";
+
+// Lazy load non-critical components
+const ParticleField = lazy(() => import("./effects/ParticleField"));
 
 const Layout = () => {
   const { theme } = useTheme();
@@ -43,44 +46,21 @@ const Layout = () => {
   };
 
   return (
-    <div
-      className={`relative min-h-screen ${
-        isDark ? "bg-gray-900 text-gray-100" : "bg-gray-50 text-gray-800"
-      }`}
-    >
-      <div className='fixed inset-0 -z-10 pointer-events-none'>
-        <div
-          className={`absolute inset-0 opacity-30 ${
-            isDark
-              ? "bg-gradient-to-b from-indigo-950 via-gray-900 to-gray-900"
-              : "bg-gradient-to-b from-indigo-50 via-gray-50 to-gray-50"
-          }`}
-        />
-
-        <div
-          className={`absolute inset-0 opacity-20 ${
-            isDark
-              ? "bg-gradient-to-tr from-purple-900 via-transparent to-transparent"
-              : "bg-gradient-to-tr from-purple-100 via-transparent to-transparent"
-          }`}
-        />
-      </div>
-
-      <ParticleField />
-
+    <div className={`min-h-screen ${isDark ? "dark" : ""}`}>
       <Navigation />
 
-      <motion.main
-        key={location.pathname}
-        variants={pageVariants}
-        initial='initial'
-        animate='animate'
-        exit='exit'
-        transition={{ type: "spring" }}
-        className='min-h-dvh relative z-10 px-4 lg:px-8 py-10 pt-24 '
+      {/* Lazy load particle effects */}
+      <Suspense
+        fallback={
+          <div className='fixed inset-0 -z-10 bg-gray-100 dark:bg-gray-900' />
+        }
       >
+        <ParticleField />
+      </Suspense>
+
+      <main>
         <Outlet />
-      </motion.main>
+      </main>
 
       <Footer />
     </div>

@@ -1,6 +1,7 @@
 import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
+import Notification from "./ui/Notification";
 import TrackedForm from "./ui/TrackedForm";
 
 const Contact = () => {
@@ -11,8 +12,20 @@ const Contact = () => {
     message: "",
   });
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState("");
+  const [isNotificationVisible, setIsNotificationVisible] = useState(false);
+  const [notificationClass, setNotificationClass] = useState("");
+  const [notificationMessage, setNotificationMessage] = useState("");
+
+  // Handle notification timer
+  useEffect(() => {
+    if (isNotificationVisible) {
+      const timer = setTimeout(() => {
+        setIsNotificationVisible(false);
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isNotificationVisible]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -29,41 +42,67 @@ const Contact = () => {
 
     // Reset status
     setLoading(true);
-    setSuccess(false);
-    setError("");
+    setIsNotificationVisible(false);
 
     try {
+      // Prepare template parameters matching your EmailJS template
+      const templateParams = {
+        from_name: formData.name,
+        user_name: formData.name,
+        user_email: formData.email,
+        reply_to: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: "your-email@example.com", // Replace with your email
+      };
+
       // Send email using EmailJS
       const result = await emailjs.send(
-        "service_id", // Replace with your EmailJS service ID
-        "template_id", // Replace with your EmailJS template ID
-        {
-          from_name: formData.name,
-          reply_to: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-        },
-        "public_key" // Replace with your EmailJS public key
+        "service_orelyofolio", // Your EmailJS service ID
+        "template_orelyofolio", // Your EmailJS template ID
+        templateParams,
+        "ayAReS0YEgu_5jdVT" // Your EmailJS public key
       );
 
       if (result.status === 200) {
-        setSuccess(true);
+        // Success notification
+        setNotificationClass("notification-success");
+        setNotificationMessage(
+          "Thank you! Your message has been sent successfully."
+        );
+        setIsNotificationVisible(true);
+
+        // Reset form
         setFormData({ name: "", email: "", subject: "", message: "" });
-        // Note: No need to call onFormComplete() here as TrackedForm handles it automatically
       } else {
         throw new Error("Failed to send email");
       }
     } catch (err) {
       console.error("Contact form error:", err);
-      setError("Failed to send your message. Please try again later.");
-      // Note: No need to call onFormError() here as TrackedForm handles it automatically
+
+      // Error notification
+      setNotificationClass("notification-error");
+      setNotificationMessage(
+        "Failed to send your message. Please try again later."
+      );
+      setIsNotificationVisible(true);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <section className='py-16 md:py-24' id='contact'>
+    <section className='py-16 md:py-24 relative' id='contact'>
+      {isNotificationVisible && (
+        <div className='fixed top-20 right-4 z-50'>
+          <Notification
+            classNames={notificationClass}
+            message={notificationMessage}
+            emoji={notificationClass.includes("success") ? "✅" : "❌"}
+          />
+        </div>
+      )}
+
       <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -89,18 +128,6 @@ const Contact = () => {
             onSubmit={handleSubmit}
             className='space-y-6 bg-gray-900/50 p-8 rounded-2xl'
           >
-            {success && (
-              <div className='bg-green-500/20 border border-green-500 text-green-200 px-4 py-3 rounded mb-4'>
-                Thank you! Your message has been sent successfully.
-              </div>
-            )}
-
-            {error && (
-              <div className='bg-red-500/20 border border-red-500 text-red-200 px-4 py-3 rounded mb-4'>
-                {error}
-              </div>
-            )}
-
             <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
               <div>
                 <label

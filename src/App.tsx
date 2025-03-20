@@ -1,7 +1,7 @@
-import { LanguageContextProvider, ThemeContextProvider } from "./contexts";
-
 import ReactGA from "react-ga4";
-import Router from "./router";
+import { HelmetProvider } from "react-helmet-async";
+import { LanguageContextProvider, ThemeContextProvider } from "./contexts";
+import AppRoutes from "./router";
 ReactGA.initialize(import.meta.env.VITE_GA_MI, {
   gaOptions: {
     send_page_view: false,
@@ -9,11 +9,13 @@ ReactGA.initialize(import.meta.env.VITE_GA_MI, {
 });
 const App = () => {
   return (
-    <ThemeContextProvider>
-      <LanguageContextProvider>
-        <Router />
-      </LanguageContextProvider>
-    </ThemeContextProvider>
+    <HelmetProvider>
+      <ThemeContextProvider>
+        <LanguageContextProvider>
+          <AppRoutes />
+        </LanguageContextProvider>
+      </ThemeContextProvider>
+    </HelmetProvider>
   );
 };
 
