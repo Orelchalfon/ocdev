@@ -145,7 +145,7 @@ const FoldableMap = () => {
           initial={{ rotate: 3 }}
           className='grid aspect-video max-h-[80vh] w-full min-w-[600px] p-8 relative'
         >
-          <div className='grid grid-cols-3 [grid-area:1/1]'>
+          <div className='grid grid-cols-3 rounded-sm [grid-area:1/1] overflow-hidden'>
             <motion.div
               style={{ x: xLeftSection, skewY: "-1deg" }}
               className='map-image origin-bottom-right border-r border-[rgba(255,255,255,.1)] shadow-2xl'
@@ -157,7 +157,7 @@ const FoldableMap = () => {
                   "--brightness": centerBrightness,
                 } as MotionStyle
               }
-              className='map-image brightness-[--brightness] relative'
+              className='map-image  z-40 brightness-[--brightness] relative'
             >
               {/* Google Maps will appear here when unfolded */}
               <AnimatePresence>
@@ -167,7 +167,7 @@ const FoldableMap = () => {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.5 }}
-                    className='absolute  inset-0 z-10 overflow-hidden'
+                    className='absolute w-[90dvw] top-0 left-1/2 right-0 bottom-0 -translate-x-1/2 md:w-[80dvw] lg:w-[75dvw]    overflow-hidden'
                     ref={mapRef}
                   />
                 )}
@@ -194,7 +194,7 @@ const FoldableMap = () => {
               timeConstant: 45,
             }}
             className='
-              absolute left-32 md:left-1/3 lg:left-2/3 h-full z-30 cursor-grab active:cursor-grabbing
+              absolute left-32 md:left-1/3 lg:left-2/3 h-full z-50 cursor-grab active:cursor-grabbing
               flex items-center justify-center bg-black/10 hover:bg-black/20
               backdrop-blur-sm transition-colors duration-200
             '

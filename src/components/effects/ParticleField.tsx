@@ -28,8 +28,8 @@ const ParticleField = () => {
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          dx: (Math.random() - .5) * 0.5,
-          dy: (Math.random() - .5) * 0.5,
+          dx: (Math.random() - 0.5) * 0.5,
+          dy: (Math.random() - 0.5) * 0.5,
           size: Math.random() * 10,
         });
       }
@@ -79,6 +79,8 @@ const ParticleField = () => {
     return () => window.removeEventListener("resize", resize);
   }, []);
 
-  return <canvas ref={canvasRef} className='absolute inset-0 w-full h-full z-10' />;
+  return (
+    <canvas ref={canvasRef} className='absolute inset-0 w-full h-full z-10' />
+  );
 };
 export default ParticleField;
