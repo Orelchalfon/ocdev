@@ -22,8 +22,6 @@
     /* Animation */
     --transition-duration: 200ms;
     --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
-
-    background: hsl(73, 39%, 76%);
   }
 
   /* Scrollbar Styles */
