@@ -186,6 +186,7 @@ const FoldableMap = () => {
             style={{
               x: xDrag,
               width: "2.5dvw",
+              height: "100%",
               minWidth: "40px",
             }}
             dragConstraints={{ left: 0, right: 300 }}
@@ -194,21 +195,21 @@ const FoldableMap = () => {
               timeConstant: 45,
             }}
             className='
-              absolute left-32 md:left-1/3 lg:left-2/3 h-full z-50 cursor-grab active:cursor-grabbing
-              flex items-center justify-center bg-black/10 hover:bg-black/20
-              backdrop-blur-sm transition-colors duration-200
+              absolute left-32 md:left-1/3 lg:left-2/3 h-full z-50 cursor-grab rounded-md active:cursor-grabbing 
+              flex items-center justify-center bg-black/40 hover:bg-black/50
+              backdrop-blur-sm transition-colors duration-200 py-8
             '
           >
-            <div className='flex flex-col items-center gap-2 text-white'>
+            <div className='h-full w-full flex flex-col justify-end items-center gap-2 text-white rounded-md'>
+              <span className='text-xs sm:px-10 font-medium md:text-sm lg:text-xl text-center [writing-mode:vertical-rl] rounded-md'>
+                {isFolded ? "Drag to open" : "Drag to close"}
+              </span>
               <motion.span
                 style={{ rotate: arrowRotation }}
-                className='text-xl font-bold'
+                className='text-xl font-bold rounded-md'
               >
                 →
               </motion.span>
-              <span className='text-xs sm:px-10 font-medium md:text-sm lg:text-xl text-center [writing-mode:vertical-rl]'>
-                {isFolded ? "Drag to open" : "Drag to close"}
-              </span>
             </div>
           </motion.div>
         </motion.div>
