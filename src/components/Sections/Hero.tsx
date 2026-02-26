@@ -159,7 +159,7 @@ export const Hero = ({ onExploreClick }: HeroProps) => {
   const y = useTransform(scrollY, [0, 500], [0, 100]);
   const opacity = useTransform(scrollY, [0, 150], [1, 0])
   return (
-    <section id="home" className="min-h-screen pt-32 px-6 relative  overflow-hidden">
+    <section id="home" className="min-h-screen pt-28 px-4 md:px-6 lg:px-8 lg:pt-20 relative overflow-hidden">
       <ParticleField />
 
       <div className="max-w-7xl mx-auto relative ">

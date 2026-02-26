@@ -77,7 +77,7 @@ const Menu = memo(
                 } rounded-xl transition-all duration-300
                 ${!isMobile && "relative overflow-hidden"}
                 ${
-                  isDark
+                  isDark 
                     ? "text-gray-300 hover:text-white"
                     : "text-gray-600 hover:text-gray-900"
                 }

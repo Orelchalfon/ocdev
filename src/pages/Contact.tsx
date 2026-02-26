@@ -79,29 +79,28 @@ const Contact = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0 }}
-      className='py-24'
+      className='py-16 md:py-24'
     >
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         {/* Contact Info */}
-        <section className='mb-24'>
+        <section className='mb-16 md:mb-24'>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className='text-4xl md:text-5xl font-bold text-center mb-16'
+            className='text-4xl md:text-5xl font-bold text-center mb-12 md:mb-16'
           >
             {t("contact.title")}
           </motion.h1>
 
-          <div className='grid md:grid-cols-3 gap-8'>
+          <div className='grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8'>
             {contactInfo.map((info, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.2 }}
-                className={`p-6 rounded-2xl text-center ${
-                  theme === "dark" ? "bg-gray-900/50" : "bg-gray-100"
-                }`}
+                className={`p-6 rounded-2xl text-center ${theme === "dark" ? "bg-gray-900/50" : "bg-gray-100"
+                  }`}
               >
                 <div className='w-12 h-12 mx-auto mb-4 text-indigo-500 flex items-center justify-center'>
                   {info.icon}
@@ -120,7 +119,7 @@ const Contact = () => {
         </section>
 
         {/* Map Section */}
-        <section className='mb-24'>
+        <section className='mb-16 md:mb-24'>
           <FoldableMap />
         </section>
 

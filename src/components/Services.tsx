@@ -19,7 +19,12 @@ const item = {
   show: { opacity: 1, y: 0 },
 };
 
-const Services = () => {
+type ServicesProps = {
+  /** When false, omits the max-w container (for use inside page wrappers) */
+  contained?: boolean;
+};
+
+const Services = ({ contained = true }: ServicesProps) => {
   const { t } = useLanguage();
   const { theme } = useTheme();
 
@@ -29,9 +34,9 @@ const Services = () => {
   // For arrays
   const mainServices = t<Service[]>("services.mainServices");
 
-  return (
-    <section className='py-16 md:py-24' id='services'>
-      <div className='text-center mb-16'>
+  const inner = (
+    <>
+      <div className='text-center mb-12 md:mb-16'>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -47,17 +52,16 @@ const Services = () => {
         initial='hidden'
         whileInView='show'
         viewport={{ once: true }}
-        className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
+        className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8'
       >
         {mainServices.map((service, index) => (
           <motion.div
             key={index}
             variants={item}
-            className={`group p-8 rounded-2xl ${
-              theme === "dark"
+            className={`group p-6 md:p-8 rounded-2xl ${theme === "dark"
                 ? "bg-gray-900/50 hover:bg-gray-800/50"
                 : "bg-gray-100 hover:bg-gray-200"
-            } transition-colors`}
+              } transition-colors`}
           >
             <div className='mb-4'>
               <span className='text-4xl'>{service.icon}</span>
@@ -73,6 +77,16 @@ const Services = () => {
           </motion.div>
         ))}
       </motion.div>
+    </>
+  );
+
+  return (
+    <section className={contained ? "py-16 md:py-24" : ""} id='services'>
+      {contained ? (
+        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>{inner}</div>
+      ) : (
+        inner
+      )}
     </section>
   );
 };
