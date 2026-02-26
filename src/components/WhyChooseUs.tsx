@@ -1,6 +1,65 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import TrackedVideo from "./ui/TrackedVideo";
+
+const EXPLAINER_VIDEO_SRC = "/assets/videos/explainer.mp4";
+
+const VideoModal = ({
+  isOpen,
+  onClose,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+}) => {
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleEscape = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
+
+  return (
+    <div
+      className='fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm'
+      role='dialog'
+      aria-modal='true'
+      aria-label='Video player'
+      onClick={(e) => e.target === e.currentTarget && onClose()}
+    >
+      <div
+        className='relative w-full max-w-4xl aspect-video rounded-2xl overflow-hidden bg-gray-900 shadow-2xl'
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          onClick={onClose}
+          className='absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/70 focus:outline-none focus:ring-2 focus:ring-indigo-500'
+          aria-label='Close video'
+        >
+          <svg className='w-6 h-6' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
+          </svg>
+        </button>
+        <TrackedVideo
+          src={EXPLAINER_VIDEO_SRC}
+          title='OCDev services explainer'
+          poster='/video-thumbnail.webp'
+          controls
+          className='w-full h-full object-contain'
+        />
+      </div>
+    </div>
+  );
+};
 
 const WhyChooseUs = () => {
+  const [showVideo, setShowVideo] = useState(false);
+
+  const handlePlayClick = () => {
+    setShowVideo(true);
+  };
+
   return (
     <section className='py-16 md:py-24' id='why-choose-us'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
@@ -46,6 +105,7 @@ const WhyChooseUs = () => {
                 whileHover={{ scale: 1.1 }}
               >
                 <button
+                  onClick={handlePlayClick}
                   className='w-16 h-16 md:w-20 md:h-20 bg-indigo-600 rounded-full flex items-center justify-center text-white transition-transform duration-300 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
                   aria-label='Play video'
                 >
@@ -103,6 +163,8 @@ const WhyChooseUs = () => {
           </motion.div>
         </div>
       </div>
+
+      <VideoModal isOpen={showVideo} onClose={() => setShowVideo(false)} />
     </section>
   );
 };

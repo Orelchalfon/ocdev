@@ -7,16 +7,19 @@ const projects = [
     title: "Mobile App Design",
     video: "/assets/videos/zentry-pc.mp4",
     category: "UI/UX Design",
+    filterId: "design",
   },
   {
     title: "Website Redesign",
     video: "/assets/videos/codesandbox-pc.mp4",
     category: "Web Development",
+    filterId: "web",
   },
   {
     title: "Brand Identity",
     video: "/portfolio3.demo.mp4",
     category: "Branding",
+    filterId: "design",
   },
 ];
 
@@ -44,15 +47,26 @@ const videoReducer = (state: VideoState, action: VideoAction): VideoState => {
   }
 };
 
-const Portfolio = () => {
+type PortfolioProps = {
+  activeFilter?: string;
+  /** When false, omits the max-w container (for use inside page wrappers) */
+  contained?: boolean;
+};
+
+const Portfolio = ({ activeFilter = "all", contained = true }: PortfolioProps) => {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+
+  const filteredProjects = projects.filter(
+    (project) => activeFilter === "all" || project.filterId === activeFilter
+  );
   const [, dispatch] = useReducer(videoReducer, {
     hoveredIndex: null,
     playingIndex: null,
   });
 
   const handleMouseEnter = (index: number) => {
-    if (!projects[projects.length - 1].video) return;
+    const project = filteredProjects[index];
+    if (!project?.video) return;
     dispatch({ type: "HOVER_ENTER", index });
     const video = videoRefs.current[index];
     if (video) {
@@ -73,10 +87,9 @@ const Portfolio = () => {
     }
   };
 
-  return (
-    <section className='py-16 md:py-24'>
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-        <motion.header
+  const inner = (
+    <>
+      <motion.header
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -93,7 +106,7 @@ const Portfolio = () => {
         </motion.header>
 
         <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8'>
-          {projects.map((project, index) => (
+          {filteredProjects.map((project, index) => (
             <motion.li
               key={index}
               onMouseOver={() => handleMouseEnter(index)}
@@ -138,7 +151,16 @@ const Portfolio = () => {
             </motion.li>
           ))}
         </ul>
-      </div>
+    </>
+  );
+
+  return (
+    <section className={contained ? "py-16" : ""}>
+      {contained ? (
+        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>{inner}</div>
+      ) : (
+        inner
+      )}
     </section>
   );
 };

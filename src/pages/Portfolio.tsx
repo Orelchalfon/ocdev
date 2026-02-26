@@ -38,7 +38,7 @@ const Portfolio = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0 }}
-      className='py-16 md:py-24'
+      className='pt-28 '
     >
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         {/* Featured Projects */}
@@ -102,7 +102,7 @@ const Portfolio = () => {
         </section>
 
         {/* Filters */}
-        <div className='flex justify-center mb-8 md:mb-12'>
+        <div className='flex justify-center  '>
           <div
             className={`inline-flex rounded-lg p-1 ${theme === "dark" ? "bg-gray-900" : "bg-gray-100"
               }`}
@@ -126,7 +126,7 @@ const Portfolio = () => {
         </div>
 
         {/* Portfolio Grid */}
-        <PortfolioComponent />
+        <PortfolioComponent activeFilter={activeFilter} contained={false} />
       </div>
     </motion.div>
   );

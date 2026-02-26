@@ -30,11 +30,11 @@ const Services = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0 }}
-      className='py-16 md:py-24'
+      className='pt-28 '
     >
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         {/* Main Services */}
-        <ServicesComponent />
+        <ServicesComponent contained={false} />
 
         {/* Additional Services */}
         <section className='mt-16 md:mt-24'>
