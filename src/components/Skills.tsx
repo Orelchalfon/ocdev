@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useTheme } from "../hooks/useTheme";
-import { useIsRTL, useDirectionClasses } from "../utils/directionUtils";
+import { useDirectionClasses, useIsRTL } from "../utils/directionUtils";
 
 const Skills = () => {
   const { theme } = useTheme();
@@ -42,13 +42,13 @@ const Skills = () => {
   ];
 
   return (
-    <section className='py-20' id='skills'>
-      <div className='container mx-auto px-4'>
+    <section className='py-16 md:py-24' id='skills'>
+      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className={`text-center mb-16 ${isRTL ? 'rtl' : ''}`}
+          className={`text-center mb-12 md:mb-16 ${isRTL ? 'rtl' : ''}`}
         >
           <h2 className='text-4xl font-bold mb-4'>
             <span className='text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500'>
@@ -61,7 +61,7 @@ const Skills = () => {
           </p>
         </motion.div>
 
-        <div className='grid gap-8 md:grid-cols-3'>
+        <div className='grid gap-6 md:grid-cols-3 md:gap-8'>
           {skillCategories.map((category, index) => (
             <motion.div
               key={category.title}
@@ -69,9 +69,8 @@ const Skills = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className={`p-6 rounded-xl backdrop-blur-sm ${
-                isDark ? 'bg-gray-800/30' : 'bg-white/80'
-              } ${isRTL ? 'text-right' : ''}`}
+              className={`p-6 rounded-xl backdrop-blur-sm ${isDark ? 'bg-gray-800/30' : 'bg-white/80'
+                } ${isRTL ? 'text-right' : ''}`}
             >
               <h3 className='text-xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500'>
                 {category.title}
@@ -81,18 +80,16 @@ const Skills = () => {
                   <div key={skill.name} className='group'>
                     <div className={`flex ${directionClasses.flexDirection} items-center mb-4`}>
                       <span
-                        className={`font-medium ${
-                          isDark ? "text-gray-300" : "text-gray-700"
-                        }`}
+                        className={`font-medium ${isDark ? "text-gray-300" : "text-gray-700"
+                          }`}
                       >
                         {skill.name}
                       </span>
                       <span className='text-gray-500'>{skill.level}%</span>
                     </div>
                     <div
-                      className={`h-2 rounded-full ${
-                        isDark ? "bg-gray-700" : "bg-gray-200"
-                      } overflow-hidden`}
+                      className={`h-2 rounded-full ${isDark ? "bg-gray-700" : "bg-gray-200"
+                        } overflow-hidden`}
                     >
                       <motion.div
                         initial={{ width: 0 }}

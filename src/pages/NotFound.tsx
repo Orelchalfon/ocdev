@@ -33,7 +33,7 @@ const NotFound = () => {
 
   return (
     <motion.div
-      className='min-h-[80vh] flex items-center justify-center px-4'
+      className='min-h-[80vh] flex items-center justify-center px-4 sm:px-6 lg:px-8'
       initial='hidden'
       animate='visible'
       variants={containerVariants}
@@ -61,9 +61,8 @@ const NotFound = () => {
         </motion.h1>
 
         <motion.p
-          className={`text-lg mb-8 ${
-            isDark ? "text-gray-300" : "text-gray-600"
-          }`}
+          className={`text-lg mb-8 ${isDark ? "text-gray-300" : "text-gray-600"
+            }`}
           variants={itemVariants}
         >
           {description}
@@ -119,9 +118,8 @@ const NotFound = () => {
           transition={{ delay: 0.8 }}
         >
           <pre
-            className={`text-left p-4 text-sm font-mono rounded-lg ${
-              isDark ? "bg-gray-800" : "bg-gray-100"
-            }`}
+            className={`text-left p-4 text-sm font-mono rounded-lg ${isDark ? "bg-gray-800" : "bg-gray-100"
+              }`}
           >
             <code>
               <span className='text-pink-500'>try</span> {"{"}

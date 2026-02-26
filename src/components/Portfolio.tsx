@@ -74,69 +74,71 @@ const Portfolio = () => {
   };
 
   return (
-    <section className='py-16'>
-      <motion.header
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className='text-center mb-16'
-      >
-        <h2
-          id='portfolio-heading'
-          className='text-3xl md:text-4xl font-bold mb-6'
+    <section className='py-16 md:py-24'>
+      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+        <motion.header
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className='text-center mb-12 md:mb-16'
         >
-          Our Awesome
-          <br />
-          Portfolio
-        </h2>
-      </motion.header>
-
-      <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-        {projects.map((project, index) => (
-          <motion.li
-            key={index}
-            onMouseOver={() => handleMouseEnter(index)}
-            onMouseLeave={() => handleMouseLeave(index)}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.2 }}
-            className='group relative overflow-hidden rounded-2xl cursor-pointer shadow-inner shadow-zinc-500'
+          <h2
+            id='portfolio-heading'
+            className='text-3xl md:text-4xl font-bold mb-6'
           >
-            <article className='relative aspect-[16/9]'>
-              <figure className='h-full'>
-                {project?.video && (
-                  <TrackedVideo
-                    ref={(el) =>
-                      (videoRefs.current[index] = el as HTMLVideoElement)
-                    }
-                    src={project.video}
-                    title={project.title}
-                    muted
-                    loop
-                    preload='metadata'
-                    playsInline
-                    controls={false}
-                    className='w-full h-full object-cover transition-transform duration-300 group-hover:scale-110'
-                    aria-labelledby={`video-${index}-caption`}
-                  />
-                )}
-                <figcaption className='absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
-                  <div className='absolute bottom-0 left-0 right-0 p-6'>
-                    <h3
-                      id={`video-${index}-caption`}
-                      className='text-xl font-semibold text-white mb-2'
-                    >
-                      {project.title}
-                    </h3>
-                    <p className='text-gray-300'>{project.category}</p>
-                  </div>
-                </figcaption>
-              </figure>
-            </article>
-          </motion.li>
-        ))}
-      </ul>
+            Our Awesome
+            <br />
+            Portfolio
+          </h2>
+        </motion.header>
+
+        <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8'>
+          {projects.map((project, index) => (
+            <motion.li
+              key={index}
+              onMouseOver={() => handleMouseEnter(index)}
+              onMouseLeave={() => handleMouseLeave(index)}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.2 }}
+              className='group relative overflow-hidden rounded-2xl cursor-pointer shadow-inner shadow-zinc-500'
+            >
+              <article className='relative aspect-[16/9]'>
+                <figure className='h-full'>
+                  {project?.video && (
+                    <TrackedVideo
+                      ref={(el) =>
+                        (videoRefs.current[index] = el as HTMLVideoElement)
+                      }
+                      src={project.video}
+                      title={project.title}
+                      muted
+                      loop
+                      preload='metadata'
+                      playsInline
+                      controls={false}
+                      className='w-full h-full object-cover transition-transform duration-300 group-hover:scale-110'
+                      aria-labelledby={`video-${index}-caption`}
+                    />
+                  )}
+                  <figcaption className='absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
+                    <div className='absolute bottom-0 left-0 right-0 p-6'>
+                      <h3
+                        id={`video-${index}-caption`}
+                        className='text-xl font-semibold text-white mb-2'
+                      >
+                        {project.title}
+                      </h3>
+                      <p className='text-gray-300'>{project.category}</p>
+                    </div>
+                  </figcaption>
+                </figure>
+              </article>
+            </motion.li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 };

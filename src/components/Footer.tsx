@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 const Footer = () => {
   return (
     <footer className="py-12 bg-slate-700/90 backdrop-blur-md">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo and Description */}
           <motion.div

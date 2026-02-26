@@ -67,22 +67,21 @@ const Projects = () => {
       : projects.filter((project) => project.category === activeFilter);
 
   return (
-    <section className='py-20'>
+    <section className='py-16 md:py-24'>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className='container mx-auto px-4'
+        className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'
       >
-        <h2 className='text-4xl font-bold text-center mb-16'>
+        <h2 className='text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16'>
           {t("projects.title")}
         </h2>
 
         {/* Filters */}
-        <div className='flex justify-center mb-12'>
+        <div className='flex justify-center mb-8 md:mb-12'>
           <div
-            className={`inline-flex rounded-lg p-1 ${
-              isDark ? "bg-gray-900" : "bg-gray-100"
-            }`}
+            className={`inline-flex rounded-lg p-1 ${isDark ? "bg-gray-900" : "bg-gray-100"
+              }`}
           >
             {filters.map((filter) => (
               <button
@@ -90,14 +89,12 @@ const Projects = () => {
                 onClick={() => setActiveFilter(filter.id)}
                 className={`
                   px-4 py-2 rounded-lg text-sm font-medium transition-colors
-                  ${
-                    activeFilter === filter.id
-                      ? "bg-indigo-500 text-white"
-                      : `${
-                          isDark
-                            ? "text-gray-400 hover:text-white"
-                            : "text-gray-600 hover:text-gray-900"
-                        }`
+                  ${activeFilter === filter.id
+                    ? "bg-indigo-500 text-white"
+                    : `${isDark
+                      ? "text-gray-400 hover:text-white"
+                      : "text-gray-600 hover:text-gray-900"
+                    }`
                   }
                 `}
               >
@@ -108,7 +105,7 @@ const Projects = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8'>
           {filteredProjects.map((project, index) => (
             <motion.div
               key={project.id}
@@ -116,8 +113,7 @@ const Projects = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
               className={`
-                rounded-2xl overflow-hidden ${
-                  isDark ? "bg-gray-900" : "bg-white"
+                rounded-2xl overflow-hidden ${isDark ? "bg-gray-900" : "bg-white"
                 }
                 shadow-lg hover:shadow-xl transition-all duration-300
               `}
@@ -149,9 +145,8 @@ const Projects = () => {
               <div className='p-6'>
                 <h3 className='text-xl font-bold mb-2'>{project.title}</h3>
                 <p
-                  className={`mb-4 ${
-                    isDark ? "text-gray-400" : "text-gray-600"
-                  }`}
+                  className={`mb-4 ${isDark ? "text-gray-400" : "text-gray-600"
+                    }`}
                 >
                   {project.description}
                 </p>

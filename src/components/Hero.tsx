@@ -98,7 +98,7 @@ const Hero = memo(() => {
       {/* Background gradient */}
       <div className={`absolute inset-0 bg-gradient-to-br ${gradientClass}`} />
 
-      <div className='container relative z-10 mx-auto px-4 lg:px-8'>
+      <div className='relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
         <div
           className={`grid grid-cols-1 items-center gap-12 lg:grid-cols-2 ${directionClasses.textAlign}`}
         >
@@ -118,9 +118,8 @@ const Hero = memo(() => {
                 variants={textVariants}
               >
                 <motion.span
-                  className={`inline-block ${
-                    isDark ? "text-white" : "text-gray-900"
-                  }`}
+                  className={`inline-block ${isDark ? "text-white" : "text-gray-900"
+                    }`}
                   whileHover={{ scale: 1.05 }}
                 >
                   {t("hero.name")}
@@ -162,11 +161,10 @@ const Hero = memo(() => {
               {technologies.map((tech, index) => (
                 <motion.button
                   key={tech.name}
-                  className={`rounded-lg px-4 py-2 text-sm font-medium backdrop-blur-sm transition-all duration-300 ${
-                    isDark
+                  className={`rounded-lg px-4 py-2 text-sm font-medium backdrop-blur-sm transition-all duration-300 ${isDark
                       ? "bg-gray-800/30 text-gray-300 hover:bg-gray-700/50"
                       : "bg-gray-100/80 text-gray-800 hover:bg-gray-200/90"
-                  }`}
+                    }`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 + index * 0.1 }}
@@ -209,11 +207,10 @@ const Hero = memo(() => {
               </motion.a>
               <motion.a
                 href='#contact'
-                className={`rounded-lg border px-8 py-3 font-medium backdrop-blur-sm transition-all duration-300 ${
-                  isDark
+                className={`rounded-lg border px-8 py-3 font-medium backdrop-blur-sm transition-all duration-300 ${isDark
                     ? "border-gray-700 text-gray-300 hover:bg-gray-800/50"
                     : "border-gray-300 text-gray-800 hover:bg-gray-100/80"
-                }`}
+                  }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

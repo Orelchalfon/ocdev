@@ -6,8 +6,8 @@ import { useLanguage } from "../../hooks/useLanguage";
 import { useScrollAnimation } from "../../hooks/useScrollAnimation";
 import { useTheme } from "../../hooks/useTheme";
 import LanguageToggle from "../ui/LanguageToggle";
-import Menu from "./Menu";
 import ThemeToggle from "../ui/ThemeToggle";
+import Menu from "./Menu";
 
 // Main Navigation component using memo to prevent unnecessary rerenders
 const Navigation = memo(() => {
@@ -56,11 +56,10 @@ const Navigation = memo(() => {
         <div
           className={`
           rounded-3xl px-6 py-5 
-          ${
-            !isDark
+          ${!isDark
               ? "bg-gray-900/80 shadow-lg shadow-purple-500/5"
               : "bg-white/80 shadow-lg shadow-indigo-500/5"
-          }
+            }
           backdrop-blur-md
         `}
         >
@@ -93,10 +92,9 @@ const Navigation = memo(() => {
                 onClick={toggleMenu}
                 className={`
                   p-2 rounded-xl transition-colors
-                  ${
-                    !isDark
-                      ? "hover:bg-gray-800 text-gray-300"
-                      : "hover:bg-gray-100 text-gray-600"
+                  ${!isDark
+                    ? "hover:bg-gray-800 text-gray-300"
+                    : "hover:bg-gray-100 text-gray-600"
                   }
                 `}
               >
@@ -132,17 +130,16 @@ const Navigation = memo(() => {
               transition={{ duration: 0.3 }}
               className={`
                 md:hidden mt-2 py-4 px-6 rounded-2xl z-50
-                ${
-                  isDark
-                    ? "bg-gray-900/90 shadow-lg shadow-purple-500/5"
-                    : "bg-white/90 shadow-lg shadow-indigo-500/5"
+                ${!isDark
+                  ? "bg-gray-900/90 shadow-lg shadow-purple-500/5"
+                  : "bg-white/90 shadow-lg shadow-indigo-500/5"
                 }
                 backdrop-blur-md
               `}
             >
               <Menu
                 navLinks={navLinks}
-                isDark={isDark}
+                isDark={!isDark}
                 isMobile={true}
                 onLinkClick={closeMenu}
               />
